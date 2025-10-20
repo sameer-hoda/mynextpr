@@ -923,7 +923,11 @@ function startApp() {
   }));
 
   // Google OAuth routes
-  app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+  app.get('/auth/google', (req, res, next) => {
+    const origin = req.query.origin || 'web'; // Default to 'web'
+    const state = Buffer.from(JSON.stringify({ origin })).toString('base64');
+    passport.authenticate('google', { scope: ['profile', 'email'], state })(req, res, next);
+  });
 
   app.get('/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/', session: false }),
@@ -932,12 +936,15 @@ function startApp() {
       const jwtPayload = { id: user.id, email: user.email, displayName: user.displayName, avatar: user.avatar };
       const token = jwt.sign(jwtPayload, process.env.JWT_SECRET, { expiresIn: '30d' });
 
-      // This redirect will now use the custom URL scheme to reopen the mobile app.
-      // NOTE: This will break the login flow for the web version of the app.
-      // A more robust solution would involve using the 'state' parameter to determine
-      // whether the original request came from web or mobile.
-      const mobileCallbackUrl = 'com.runna.app://auth/callback';
-      res.redirect(`${mobileCallbackUrl}?token=${token}`);
+      const state = req.query.state ? JSON.parse(Buffer.from(req.query.state, 'base64').toString()) : { origin: 'web' };
+
+      if (state.origin === 'mobile') {
+        const mobileCallbackUrl = 'com.runna.app://auth/callback';
+        res.redirect(`${mobileCallbackUrl}?token=${token}`);
+      } else {
+        const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:8080';
+        res.redirect(`${frontendUrl}/auth/callback?token=${token}`);
+      }
     }
   );
 

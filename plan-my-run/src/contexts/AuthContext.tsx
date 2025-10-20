@@ -63,11 +63,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
+import { Capacitor } from '@capacitor/core';
+
+// ... (rest of the imports)
+
+// ... (inside the AuthProvider component)
+
   const signInWithGoogle = () => {
-    // Use VITE_API_URL which is set in the Appflow build environment
+    const origin = Capacitor.isNativePlatform() ? 'mobile' : 'web';
     const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
-    // The VITE_API_URL includes the /api path, so we just append the specific endpoint
-    window.location.href = `${apiUrl}/auth/google`;
+    window.location.href = `${apiUrl}/auth/google?origin=${origin}`;
   };
 
   const signInAsTestUser = async () => {
