@@ -1,0 +1,8 @@
+{
+  "apps": [
+    {
+      "name": "plan-my-run",
+      "root": "./plan-my-run"
+    }
+  ]
+}
