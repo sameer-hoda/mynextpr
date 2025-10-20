@@ -1,0 +1,119 @@
+Here is a personalized 10K training plan tailored for an intermediate 35-year-old runner, aiming for a goal time of 1:00:10, guided by the Daniels' Running Formula approach.
+
+```json
+{
+  "plan_overview": "This 3-week 10K training plan is designed for an intermediate 35-year-old runner targeting a 1:00:10 finish time, based on Jack Daniels' Running Formula. The plan utilizes Daniels' VDOT concept, which for a 10K time of 1:00:10, corresponds to an approximate VDOT of 32.5. This VDOT level dictates specific training paces to optimize physiological adaptations.\n\nKey Paces for VDOT 32.5:\n-   **Easy (E) Pace:** 7:00-7:20 min/km (conversational, low effort)\n-   **Threshold (T) Pace:** 5:50-6:00 min/km (comfortably hard, sustainable for ~60 minutes in a race)\n-   **Interval (I) Pace:** 5:25-5:35 min/km (hard, for shorter intervals with recovery, targeting VO2max)\n-   **Repetition (R) Pace:** 4:50-5:00 min/km (very fast, for short strides, improving speed and economy)\n\nThe plan incorporates a variety of workouts including Easy Runs for aerobic base and recovery, Tempo Runs to improve lactate threshold, Interval Training to boost VDOT and speed endurance, Long Runs for overall endurance, and Strength/Cross-Training for injury prevention and balanced fitness. The structure progresses through building intensity, followed by a taper to ensure you arrive at the starting line fresh and ready for your goal race. Remember to listen to your body, adjust as needed, and prioritize recovery.",
+  "workouts": [
+    {
+      "day": 1,
+      "title": "Foundation Easy Run",
+      "type": "easy_run",
+      "description": "This run focuses on building your aerobic base and allowing your body to adapt to consistent running. Maintain a comfortable, conversational effort throughout.",
+      "warmup": "5-10 minutes brisk walk, followed by dynamic stretches (leg swings, hip circles, arm circles).",
+      "main_set": "45 minutes at Easy (E) pace (~7:00-7:20 min/km).",
+      "cooldown": "5-10 minutes walk, followed by static stretches (hamstrings, quads, calves, hip flexors).",
+      "duration_minutes": 60,
+      "distance_km": 6.5,
+      "scheduled_date": "2023-10-27"
+    },
+    {
+      "day": 3,
+      "title": "Tempo Run - Lactate Threshold Builder",
+      "type": "tempo_run",
+      "description": "This workout is crucial for improving your lactate threshold, which enables you to sustain a faster pace for longer durations. The pace should feel 'comfortably hard' – you should be able to speak in short sentences, but not hold a full conversation.",
+      "warmup": "10 minutes easy jogging (E pace), dynamic stretches, 4x100m strides at Repetition (R) pace (~4:50-5:00 min/km) with easy jog back.",
+      "main_set": "20 minutes at Threshold (T) pace (~5:50-6:00 min/km).",
+      "cooldown": "10 minutes easy jogging (E pace), followed by static stretches.",
+      "duration_minutes": 45,
+      "distance_km": 5.5,
+      "scheduled_date": "2023-10-29"
+    },
+    {
+      "day": 5,
+      "title": "Strength & Mobility Session",
+      "type": "strength",
+      "description": "Strengthen key running muscles and improve overall flexibility to prevent injuries and enhance running economy. Focus on controlled movements and good form.",
+      "warmup": "5 minutes light cardio (e.g., jumping jacks, high knees), followed by dynamic stretches.",
+      "main_set": "Perform 3 sets of 10-12 repetitions for each exercise: Squats, Lunges (each leg), Glute Bridges, Plank (hold 30-60 seconds), Calf Raises. Focus on core engagement.",
+      "cooldown": "5-10 minutes of static stretches, focusing on major muscle groups. Foam rolling if available.",
+      "duration_minutes": 45,
+      "distance_km": null,
+      "scheduled_date": "2023-10-31"
+    },
+    {
+      "day": 7,
+      "title": "Long Run - Endurance Builder",
+      "type": "long_run",
+      "description": "This long run will extend your endurance and improve your body's ability to use fat for fuel. Maintain a conversational pace throughout, ensuring you can talk comfortably.",
+      "warmup": "5-10 minutes brisk walk, followed by light dynamic stretches.",
+      "main_set": "75 minutes at Easy (E) pace (~7:00-7:20 min/km).",
+      "cooldown": "5-10 minutes walk, followed by static stretches, holding each for 20-30 seconds.",
+      "duration_minutes": 90,
+      "distance_km": 10.5,
+      "scheduled_date": "2023-11-02"
+    },
+    {
+      "day": 9,
+      "title": "Recovery Easy Run",
+      "type": "easy_run",
+      "description": "An active recovery session to flush out soreness and maintain aerobic fitness without adding significant stress. Keep the pace very relaxed.",
+      "warmup": "5 minutes brisk walk.",
+      "main_set": "30 minutes at Easy (E) pace (~7:00-7:20 min/km).",
+      "cooldown": "5 minutes walk, followed by light static stretches.",
+      "duration_minutes": 40,
+      "distance_km": 4.5,
+      "scheduled_date": "2023-11-04"
+    },
+    {
+      "day": 11,
+      "title": "Interval Training - VDOT Booster",
+      "type": "intervals",
+      "description": "This workout is designed to improve your VO2max and running economy. The intervals are hard efforts followed by specific recovery jogs.",
+      "warmup": "10 minutes easy jogging (E pace), dynamic stretches, 4x100m strides at Repetition (R) pace (~4:50-5:00 min/km) with easy jog back.",
+      "main_set": "5 x 800m at Interval (I) pace (~5:25-5:35 min/km) with 400m easy jog recovery between each interval.",
+      "cooldown": "10 minutes easy jogging (E pace), followed by static stretches.",
+      "duration_minutes": 60,
+      "distance_km": 8.0,
+      "scheduled_date": "2023-11-06"
+    },
+    {
+      "day": 13,
+      "title": "Cross-Training for Endurance & Recovery",
+      "type": "cross_train",
+      "description": "Engage different muscle groups and provide a low-impact aerobic workout, aiding recovery while maintaining fitness. Choose activities like cycling, swimming, or elliptical.",
+      "warmup": "5-10 minutes light activity (e.g., easy cycling or swimming).",
+      "main_set": "45-60 minutes of moderate intensity cross-training. Maintain a pace where you can comfortably hold a conversation.",
+      "cooldown": "5-10 minutes gentle stretching, focusing on muscles used during the activity.",
+      "duration_minutes": 60,
+      "distance_km": null,
+      "scheduled_date": "2023-11-08"
+    },
+    {
+      "day": 15,
+      "title": "Extended Long Run",
+      "type": "long_run",
+      "description": "Further build your endurance and mental toughness. This run is longer to prepare your body for the sustained effort of the 10K. Practice fueling if you plan to do so on race day.",
+      "warmup": "5-10 minutes brisk walk, followed by light dynamic stretches.",
+      "main_set": "90 minutes at Easy (E) pace (~7:00-7:20 min/km).",
+      "cooldown": "5-10 minutes walk, followed by thorough static stretches.",
+      "duration_minutes": 105,
+      "distance_km": 12.5,
+      "scheduled_date": "2023-11-10"
+    },
+    {
+      "day": 17,
+      "title": "Taper Easy Run",
+      "type": "easy_run",
+      "description": "As you enter the taper phase, this run maintains aerobic fitness while significantly reducing mileage to ensure freshness for race day. Keep it light and relaxed.",
+      "warmup": "5 minutes brisk walk.",
+      "main_set": "40 minutes at Easy (E) pace (~7:00-7:20 min/km).",
+      "cooldown": "5 minutes walk, followed by light static stretches.",
+      "duration_minutes": 50,
+      "distance_km": 5.5,
+      "scheduled_date": "2023-11-12"
+    },
+    {
+      "day": 19,
+      "title": "Race Pace Sharpening (Threshold Intervals)",
+      "type": "intervals",
+      "description": "A final tune-up workout to reinforce your race pace feel without inducing excessive fatigue. These are slightly shorter threshold

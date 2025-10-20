@@ -1,0 +1,139 @@
+```json
+{
+  "plan_overview": "This two-week Maffetone-based plan focuses on building your aerobic base and endurance for your marathon goal.  The majority of your running will be at a very low intensity (Zone 2) to maximize fat utilization and minimize injury risk.  We'll incorporate one longer run to simulate race-day demands and a tempo session to improve lactate threshold.  Remember to listen to your body and adjust as needed.",
+  "workouts": [
+    {
+      "day": 1,
+      "title": "Aerobic Base Builder",
+      "type": "easy_run",
+      "description": "Establish your aerobic foundation with a comfortable, conversational run. This run is crucial for building endurance at a low heart rate.",
+      "warmup": "5 minutes brisk walking, dynamic stretching",
+      "main_set": "50 minutes at Zone 2 aerobic pace.",
+      "cooldown": "5 minutes easy walking, static stretching",
+      "duration_minutes": 60,
+      "distance_km": 8.5
+    },
+    {
+      "day": 2,
+      "title": "Recovery and Mobility",
+      "type": "rest",
+      "description": "Allow your body to recover and adapt. Focus on rest and gentle movement.",
+      "warmup": null,
+      "main_set": null,
+      "cooldown": null,
+      "duration_minutes": null,
+      "distance_km": null
+    },
+    {
+      "day": 3,
+      "title": "Short Aerobic Run",
+      "type": "easy_run",
+      "description": "Continue building your aerobic base with a shorter, easy run. Focus on maintaining a conversational pace.",
+      "warmup": "5 minutes brisk walking, dynamic stretching",
+      "main_set": "40 minutes at Zone 2 aerobic pace.",
+      "cooldown": "5 minutes easy walking, static stretching",
+      "duration_minutes": 50,
+      "distance_km": 7.0
+    },
+    {
+      "day": 4,
+      "title": "Cross-Training for Strength",
+      "type": "cross_train",
+      "description": "Engage in low-impact cross-training to build strength and cardiovascular fitness without the stress of running.",
+      "warmup": "5 minutes light cardio",
+      "main_set": "45 minutes of cycling or swimming at a moderate effort.",
+      "cooldown": "5 minutes stretching",
+      "duration_minutes": 55,
+      "distance_km": null
+    },
+    {
+      "day": 5,
+      "title": "Tempo Progression",
+      "type": "tempo_run",
+      "description": "Introduce a sustained effort at tempo pace to improve your lactate threshold and race pace efficiency.",
+      "warmup": "10 minutes easy running at Zone 2 pace, dynamic stretching",
+      "main_set": "20 minutes at Zone 3 tempo pace.",
+      "cooldown": "10 minutes easy running at Zone 2 pace, static stretching",
+      "duration_minutes": 40,
+      "distance_km": 6.5
+    },
+    {
+      "day": 6,
+      "title": "Long Aerobic Run",
+      "type": "long_run",
+      "description": "The longest run of this two-week block, focusing on time on feet and building mental and physical endurance at an easy pace.",
+      "warmup": "5 minutes brisk walking",
+      "main_set": "90 minutes at Zone 2 aerobic pace. Focus on fueling and hydration strategy.",
+      "cooldown": "5 minutes easy walking",
+      "duration_minutes": 100,
+      "distance_km": 15.0
+    },
+    {
+      "day": 7,
+      "title": "Active Recovery",
+      "type": "easy_run",
+      "description": "A very gentle, short run to promote blood flow and aid recovery. This is an opportunity to practice very easy breathing.",
+      "warmup": "None",
+      "main_set": "25 minutes at Zone 1 recovery pace.",
+      "cooldown": "5 minutes walking",
+      "duration_minutes": 30,
+      "distance_km": 4.0
+    },
+    {
+      "day": 8,
+      "title": "Rest Day",
+      "type": "rest",
+      "description": "Complete rest to allow for full recovery and muscle repair.",
+      "warmup": null,
+      "main_set": null,
+      "cooldown": null,
+      "duration_minutes": null,
+      "distance_km": null
+    },
+    {
+      "day": 9,
+      "title": "Aerobic Endurance",
+      "type": "easy_run",
+      "description": "Build your aerobic capacity with a sustained run at an easy, conversational pace.",
+      "warmup": "5 minutes brisk walking, dynamic stretching",
+      "main_set": "55 minutes at Zone 2 aerobic pace.",
+      "cooldown": "5 minutes easy walking, static stretching",
+      "duration_minutes": 65,
+      "distance_km": 9.5
+    },
+    {
+      "day": 10,
+      "title": "Strength Training",
+      "type": "strength",
+      "description": "Focus on core strength and functional movements to support your running form and prevent injuries.",
+      "warmup": "5 minutes light cardio",
+      "main_set": "30 minutes of bodyweight exercises (squats, lunges, planks, glute bridges).",
+      "cooldown": "5 minutes stretching",
+      "duration_minutes": 40,
+      "distance_km": null
+    },
+    {
+      "day": 11,
+      "title": "Moderate Aerobic Run",
+      "type": "easy_run",
+      "description": "A solid mid-week run to maintain aerobic fitness and reinforce good running mechanics.",
+      "warmup": "5 minutes brisk walking, dynamic stretching",
+      "main_set": "45 minutes at Zone 2 aerobic pace.",
+      "cooldown": "5 minutes easy walking, static stretching",
+      "duration_minutes": 55,
+      "distance_km": 8.0
+    },
+    {
+      "day": 12,
+      "title": "Short Easy Run & Prep",
+      "type": "easy_run",
+      "description": "A very short and easy run to keep the legs moving and prepare for the next training block or rest. Focus on feeling good.",
+      "warmup": "None",
+      "main_set": "30 minutes at Zone 1 recovery pace.",
+      "cooldown": "5 minutes walking",
+      "duration_minutes": 35,
+      "distance_km": 5.0
+    }
+  ]
+}
+```

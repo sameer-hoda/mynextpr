@@ -1,0 +1,139 @@
+```json
+{
+  "plan_overview": "This two-week training block focuses on building marathon-specific endurance and speed while incorporating recovery. It emphasizes progressive overload with a mix of easy runs, tempo efforts, and interval work, culminating in a long run designed to simulate race-day demands. Rest and cross-training are integrated to promote recovery and prevent injury.",
+  "workouts": [
+    {
+      "day": 1,
+      "title": "Easy Aerobic Run",
+      "type": "easy_run",
+      "description": "Build aerobic base and promote recovery from previous training.",
+      "warmup": "5 minutes easy jogging",
+      "main_set": "8 km at Zone 2 aerobic pace.",
+      "cooldown": "5 minutes easy jogging",
+      "duration_minutes": 50,
+      "distance_km": 9
+    },
+    {
+      "day": 2,
+      "title": "Threshold Intervals",
+      "type": "intervals",
+      "description": "Improve lactate threshold and running economy at race pace.",
+      "warmup": "10 minutes easy jogging, 4 x 1 minute strides",
+      "main_set": "5 x 1000m at Zone 4 threshold pace with 2 minutes rest between intervals.",
+      "cooldown": "10 minutes easy jogging",
+      "duration_minutes": 55,
+      "distance_km": 7.5
+    },
+    {
+      "day": 3,
+      "title": "Recovery Run",
+      "type": "easy_run",
+      "description": "Active recovery to flush muscles and aid in adaptation.",
+      "warmup": "None",
+      "main_set": "5 km at Zone 1 recovery pace.",
+      "cooldown": "None",
+      "duration_minutes": 35,
+      "distance_km": 5
+    },
+    {
+      "day": 4,
+      "title": "Tempo Run",
+      "type": "tempo_run",
+      "description": "Develop sustained speed and mental toughness for marathon pace.",
+      "warmup": "10 minutes easy jogging",
+      "main_set": "5 km at Zone 3 tempo pace.",
+      "cooldown": "10 minutes easy jogging",
+      "duration_minutes": 45,
+      "distance_km": 7
+    },
+    {
+      "day": 5,
+      "title": "Cross-Training",
+      "type": "cross_train",
+      "description": "Maintain cardiovascular fitness without the impact of running.",
+      "warmup": "5 minutes light activity",
+      "main_set": "45 minutes of cycling or swimming at a moderate effort.",
+      "cooldown": "5 minutes light activity",
+      "duration_minutes": 55,
+      "distance_km": null
+    },
+    {
+      "day": 6,
+      "title": "Easy Endurance Run",
+      "type": "easy_run",
+      "description": "Further build aerobic capacity and endurance.",
+      "warmup": "5 minutes easy jogging",
+      "main_set": "10 km at Zone 2 aerobic pace.",
+      "cooldown": "5 minutes easy jogging",
+      "duration_minutes": 70,
+      "distance_km": 11
+    },
+    {
+      "day": 7,
+      "title": "Rest",
+      "type": "rest",
+      "description": "Full recovery to allow the body to adapt and rebuild.",
+      "warmup": null,
+      "main_set": null,
+      "cooldown": null,
+      "duration_minutes": null,
+      "distance_km": null
+    },
+    {
+      "day": 8,
+      "title": "Marathon Pace Intervals",
+      "type": "intervals",
+      "description": "Practice running at goal marathon pace to build efficiency and confidence.",
+      "warmup": "10 minutes easy jogging, 4 x 1 minute strides",
+      "main_set": "4 x 1600m at goal marathon pace (approx. Zone 3/4) with 3 minutes rest between intervals.",
+      "cooldown": "10 minutes easy jogging",
+      "duration_minutes": 60,
+      "distance_km": 7.6
+    },
+    {
+      "day": 9,
+      "title": "Recovery Run",
+      "type": "easy_run",
+      "description": "Light effort to aid recovery after harder workouts.",
+      "warmup": "None",
+      "main_set": "5 km at Zone 1 recovery pace.",
+      "cooldown": "None",
+      "duration_minutes": 35,
+      "distance_km": 5
+    },
+    {
+      "day": 10,
+      "title": "Long Run",
+      "type": "long_run",
+      "description": "Simulate race day demands and build crucial endurance for the marathon.",
+      "warmup": "10 minutes easy jogging",
+      "main_set": "24 km at Zone 2 aerobic pace, with the last 3 km at goal marathon pace.",
+      "cooldown": "10 minutes easy jogging",
+      "duration_minutes": 165,
+      "distance_km": 26
+    },
+    {
+      "day": 11,
+      "title": "Strength Training",
+      "type": "strength",
+      "description": "Maintain strength and prevent injuries with core and leg exercises.",
+      "warmup": "5 minutes dynamic stretching",
+      "main_set": "30 minutes of bodyweight exercises including squats, lunges, planks, and glute bridges.",
+      "cooldown": "5 minutes static stretching",
+      "duration_minutes": 40,
+      "distance_km": null
+    },
+    {
+      "day": 12,
+      "title": "Easy Aerobic Run",
+      "type": "easy_run",
+      "description": "Final easy run to maintain aerobic fitness and loosen up before the next phase.",
+      "warmup": "5 minutes easy jogging",
+      "main_set": "6 km at Zone 2 aerobic pace.",
+      "cooldown": "5 minutes easy jogging",
+      "duration_minutes": 40,
+      "distance_km": 7
+    }
+  ]
+}
+```

@@ -1,0 +1,139 @@
+```json
+{
+  "plan_overview": "This two-week plan is designed for an intermediate runner targeting a 30:00 5K. It incorporates a mix of aerobic development, tempo work, and interval training, adhering to Daniels' principles to build speed and endurance efficiently. Recovery and rest are prioritized to ensure optimal adaptation and prevent overtraining.",
+  "workouts": [
+    {
+      "day": 1,
+      "title": "Aerobic Base Building",
+      "type": "easy_run",
+      "description": "Focus on building aerobic capacity and endurance with an easy, conversational pace.",
+      "warmup": "5 minutes of brisk walking, followed by dynamic stretching.",
+      "main_set": "45 minutes at Zone 2 aerobic pace (approximately 7:30-8:00/km).",
+      "cooldown": "5 minutes of easy walking and static stretching.",
+      "duration_minutes": 55,
+      "distance_km": 7.4
+    },
+    {
+      "day": 2,
+      "title": "Lactate Threshold Intervals",
+      "type": "intervals",
+      "description": "Improve lactate threshold and race pace efficiency with sustained hard efforts.",
+      "warmup": "10 minutes easy jogging, followed by dynamic stretching and 4 x 100m strides.",
+      "main_set": "4 x 1000m at Zone 4 threshold pace (approximately 6:00-6:15/km), with 3 minutes rest (easy jog or walk) between intervals.",
+      "cooldown": "10 minutes easy jogging and static stretching.",
+      "duration_minutes": 45,
+      "distance_km": 4.0
+    },
+    {
+      "day": 3,
+      "title": "Recovery Run",
+      "type": "easy_run",
+      "description": "Promote active recovery and muscle repair with a very light, easy run.",
+      "warmup": "5 minutes of easy walking.",
+      "main_set": "25 minutes at Zone 1 recovery pace (approximately 8:30-9:00/km).",
+      "cooldown": "5 minutes of easy walking and light stretching.",
+      "duration_minutes": 35,
+      "distance_km": 4.1
+    },
+    {
+      "day": 4,
+      "title": "Rest Day",
+      "type": "rest",
+      "description": "Complete rest to allow the body to recover and adapt to training.",
+      "warmup": null,
+      "main_set": null,
+      "cooldown": null,
+      "duration_minutes": null,
+      "distance_km": null
+    },
+    {
+      "day": 5,
+      "title": "Tempo Run",
+      "type": "tempo_run",
+      "description": "Develop sustained speed and improve lactate threshold at a comfortably hard pace.",
+      "warmup": "10 minutes easy jogging, followed by dynamic stretching.",
+      "main_set": "20 minutes at Zone 3 tempo pace (approximately 6:15-6:30/km).",
+      "cooldown": "10 minutes easy jogging and static stretching.",
+      "duration_minutes": 40,
+      "distance_km": 5.3
+    },
+    {
+      "day": 6,
+      "title": "Aerobic Endurance",
+      "type": "easy_run",
+      "description": "Continue building aerobic base with a longer, easy-paced run.",
+      "warmup": "5 minutes of brisk walking.",
+      "main_set": "50 minutes at Zone 2 aerobic pace (approximately 7:30-8:00/km).",
+      "cooldown": "5 minutes of easy walking and static stretching.",
+      "duration_minutes": 60,
+      "distance_km": 7.5
+    },
+    {
+      "day": 7,
+      "title": "VO2 Max Intervals",
+      "type": "intervals",
+      "description": "Enhance maximal oxygen uptake and speed with short, very hard efforts.",
+      "warmup": "10 minutes easy jogging, followed by dynamic stretching and 4 x 100m strides.",
+      "main_set": "6 x 400m at Zone 5 VO2 max pace (approximately 5:50-6:05/km), with 2 minutes rest (easy jog or walk) between intervals.",
+      "cooldown": "10 minutes easy jogging and static stretching.",
+      "duration_minutes": 40,
+      "distance_km": 2.4
+    },
+    {
+      "day": 8,
+      "title": "Recovery Run",
+      "type": "easy_run",
+      "description": "Gentle run to aid recovery and promote blood flow to muscles.",
+      "warmup": "5 minutes of easy walking.",
+      "main_set": "20 minutes at Zone 1 recovery pace (approximately 8:30-9:00/km).",
+      "cooldown": "5 minutes of easy walking and light stretching.",
+      "duration_minutes": 30,
+      "distance_km": 3.3
+    },
+    {
+      "day": 9,
+      "title": "Strength Training",
+      "type": "strength",
+      "description": "Focus on core strength and leg power to support running form and prevent injuries.",
+      "warmup": "5 minutes of light cardio (e.g., jogging in place, jumping jacks).",
+      "main_set": "Bodyweight exercises: squats (3x10), lunges (3x10 per leg), planks (3x30 seconds), glute bridges (3x12), calf raises (3x15).",
+      "cooldown": "5 minutes of static stretching, focusing on major muscle groups.",
+      "duration_minutes": 40,
+      "distance_km": null
+    },
+    {
+      "day": 10,
+      "title": "Simulated Race Pace",
+      "type": "tempo_run",
+      "description": "Practice running at your target 5K race pace to build confidence and efficiency.",
+      "warmup": "10 minutes easy jogging, followed by dynamic stretching and 4 x 100m strides.",
+      "main_set": "3 x 1 mile at Zone 4 threshold pace (approximately 6:00-6:15/km), with 2 minutes rest (easy jog) between miles.",
+      "cooldown": "10 minutes easy jogging and static stretching.",
+      "duration_minutes": 45,
+      "distance_km": 4.8
+    },
+    {
+      "day": 11,
+      "title": "Easy Aerobic Run",
+      "type": "easy_run",
+      "description": "Final aerobic endurance run before tapering, keeping the effort easy and relaxed.",
+      "warmup": "5 minutes of brisk walking.",
+      "main_set": "40 minutes at Zone 2 aerobic pace (approximately 7:30-8:00/km).",
+      "cooldown": "5 minutes of easy walking and static stretching.",
+      "duration_minutes": 50,
+      "distance_km": 6.7
+    },
+    {
+      "day": 12,
+      "title": "Rest Day",
+      "type": "rest",
+      "description": "Complete rest to allow for full recovery and muscle replenishment before the goal race.",
+      "warmup": null,
+      "main_set": null,
+      "cooldown": null,
+      "duration_minutes": null,
+      "distance_km": null
+    }
+  ]
+}
+```

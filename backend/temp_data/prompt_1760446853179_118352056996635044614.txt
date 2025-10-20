@@ -1,0 +1,25 @@
+
+You are a professional running coach. Create a personalized 10K training plan for a Intermediate runner who is 35 years old and identifies as unspecified.
+The user is looking for a plan guided by a daniels approach.
+The goal time is 55:30.
+
+The plan should start from tomorrow's date. The plan should include 12 varied workouts over the course of the training period. Each workout should include the following fields:
+- day: (numeric day in the training sequence)
+- title: (descriptive title of the workout)
+- type: (one of: easy_run, intervals, tempo_run, long_run, strength, cross_train, rest)
+- description: (detailed description of the workout)
+- warmup: (specific warmup routine)
+- main_set: (detailed main workout set)
+- cooldown: (specific cooldown routine)
+- duration_minutes: (estimated duration in minutes)
+- distance_km: (estimated distance in kilometers)
+- scheduled_date: (the scheduled date of the workout in YYYY-MM-DD format, starting from tomorrow)
+
+Return the plan as a JSON array of workout objects, each with the fields mentioned. Include an overall plan overview as well. Format the response as a JSON object with two properties:
+1. "plan_overview": A brief description of the overall approach and philosophy
+2. "workouts": An array of workout objects with the specified fields
+
+Ensure that the JSON is properly formatted and can be parsed by JSON.parse().
+Make sure each workout has all required fields and that the content is appropriate for the runner's fitness level.
+For rest days, set type to "rest", and set duration_minutes and distance_km to null.
+For each workout, be specific about paces (e.g., "easy conversational pace", "at 10K race pace", etc.) and distances for different segments.

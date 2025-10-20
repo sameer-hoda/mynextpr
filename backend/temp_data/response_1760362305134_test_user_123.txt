@@ -1,0 +1,139 @@
+```json
+{
+  "plan_overview": "This 10K training plan is designed for an intermediate 35-year-old runner aiming for a goal time of 55:30, utilizing the principles of Jack Daniels' VDOT training. The plan spans approximately 9 weeks, focusing on developing various physiological systems crucial for 10K performance. It incorporates a balanced mix of Easy (E), Threshold (T), Interval (I), and Long (L) runs, along with strength training and cross-training to build endurance, speed, and prevent injury. Paces are calculated based on a VDOT of 36, aligning with the 55:30 10K goal. The plan progressively increases volume and intensity, culminating in a race-specific tune-up before race day. Remember to listen to your body, adjust as needed, and prioritize recovery.",
+  "workouts": [
+    {
+      "day": 3,
+      "title": "Foundation Easy Run",
+      "type": "easy_run",
+      "description": "A comfortable, conversational run to build aerobic base and aid recovery from previous efforts. Focus on maintaining an easy pace throughout. This run helps improve your cardiovascular fitness without putting excessive stress on your body.",
+      "warmup": "5 minutes walking, followed by dynamic stretches (leg swings, hip circles, arm circles).",
+      "main_set": "6 km at Easy (E) pace (6:15-6:45 min/km). Maintain a pace where you can comfortably hold a conversation.",
+      "cooldown": "5 minutes walking, followed by static stretches (quads, hamstrings, calves, glutes).",
+      "duration_minutes": 45,
+      "distance_km": 6.0
+    },
+    {
+      "day": 7,
+      "title": "Introduction to Tempo",
+      "type": "tempo_run",
+      "description": "This workout introduces your Threshold (T) pace, which is comfortably hard. It improves your lactate threshold, making you more efficient at faster paces and able to sustain them for longer durations.",
+      "warmup": "10 minutes easy jogging (E pace), followed by 4 x 100m strides at a controlled fast pace (e.g., 5K effort) with full recovery between each stride.",
+      "main_set": "2 km easy (E pace), then 3 km at Threshold (T) pace (5:05 min/km - a pace you could sustain for about an hour), followed by 2 km easy (E pace).",
+      "cooldown": "10 minutes easy walking/jogging, followed by static stretches.",
+      "duration_minutes": 50,
+      "distance_km": 7.0
+    },
+    {
+      "day": 10,
+      "title": "Long Run - Aerobic Base",
+      "type": "long_run",
+      "description": "A longer, steady run at an easy, conversational pace. This builds endurance, strengthens your cardiovascular system, and improves your body's ability to use fat as fuel.",
+      "warmup": "5 minutes walking, followed by dynamic stretches.",
+      "main_set": "10 km at Easy (E) pace (6:15-6:45 min/km). Focus on consistent effort, proper hydration, and maintaining good form.",
+      "cooldown": "5 minutes walking, followed by static stretches, holding each stretch for 20-30 seconds.",
+      "duration_minutes": 65,
+      "distance_km": 10.0
+    },
+    {
+      "day": 14,
+      "title": "Strength & Stability",
+      "type": "strength",
+      "description": "Focus on strengthening key running muscles and improving core stability to prevent injuries, enhance running form, and improve power output. This is a crucial component of a well-rounded training plan.",
+      "warmup": "5-10 minutes light cardio (e.g., easy jogging, jumping jacks), followed by dynamic stretches (e.g., leg swings, torso twists).",
+      "main_set": "Perform 3 sets of 10-15 repetitions for each exercise:\n- Bodyweight Squats\n- Lunges (alternating legs)\n- Glute Bridges\n- Plank (hold 30-60 seconds)\n- Side Plank (hold 20-40 seconds per side)\n- Calf Raises (single or double leg)\n- Bird Dog (10-12 reps per side)",
+      "cooldown": "Static stretches for major muscle groups (quads, hamstrings, glutes, calves, core).",
+      "duration_minutes": 60,
+      "distance_km": null
+    },
+    {
+      "day": 17,
+      "title": "First Intervals - VO2 Max Boost",
+      "type": "intervals",
+      "description": "This workout introduces Interval (I) pace, which is aimed at improving your VO2 max – your body's ability to use oxygen. The repetitions are hard, but with recovery jogs in between to allow for partial recovery.",
+      "warmup": "15 minutes easy jogging (E pace), followed by 4 x 100m strides at a controlled fast pace with full recovery between each.",
+      "main_set": "5 x 800m at Interval (I) pace (4:40 min/km - a pace you could sustain for about 5 minutes). Recover with 400m of easy jogging between each 800m rep.",
+      "cooldown": "15 minutes easy jogging (E pace), followed by static stretches.",
+      "duration_minutes": 60,
+      "distance_km": 9.0
+    },
+    {
+      "day": 21,
+      "title": "Active Recovery Cross-Train",
+      "type": "cross_train",
+      "description": "An opportunity to work your cardiovascular system without the impact stress of running. This aids recovery, maintains aerobic fitness, and can help prevent overuse injuries.",
+      "warmup": "5-10 minutes light activity (e.g., easy cycling, walking).",
+      "main_set": "45-60 minutes of low-impact cardiovascular activity such as cycling (road or stationary), swimming, or elliptical trainer. Maintain a moderate, conversational effort (Zone 2-3 heart rate).",
+      "cooldown": "5-10 minutes easy activity, followed by gentle stretching.",
+      "duration_minutes": 60,
+      "distance_km": null
+    },
+    {
+      "day": 24,
+      "title": "Progressive Long Run",
+      "type": "long_run",
+      "description": "A longer run with a focus on finishing strong. The last section is slightly faster than easy pace, simulating late-race effort and building mental toughness.",
+      "warmup": "5 minutes walking, dynamic stretches.",
+      "main_set": "12 km total. Run 9 km at Easy (E) pace (6:15-6:45 min/km), then finish with 3 km at a slightly faster effort (e.g., 5:45-6:00 min/km), closer to your 10K goal pace but still controlled and sustainable.",
+      "cooldown": "5 minutes walking, static stretches.",
+      "duration_minutes": 75,
+      "distance_km": 12.0
+    },
+    {
+      "day": 30,
+      "title": "Extended Tempo Challenge",
+      "type": "tempo_run",
+      "description": "Increase the duration of your Threshold (T) pace segment to further improve your ability to sustain a comfortably hard effort for longer periods. This is key for 10K performance.",
+      "warmup": "10 minutes easy jogging (E pace), followed by 4 x 100m strides.",
+      "main_set": "2 km easy (E pace), then 5 km at Threshold (T) pace (5:05 min/km), followed by 2 km easy (E pace). Maintain a consistent effort during the tempo segment.",
+      "cooldown": "10 minutes easy walking/jogging, followed by static stretches.",
+      "duration_minutes": 60,
+      "distance_km": 9.0
+    },
+    {
+      "day": 35,
+      "title": "Increased Interval Volume",
+      "type": "intervals",
+      "description": "Build on your VO2 max capacity by increasing the volume of Interval (I) pace work. Focus on consistent pacing for each rep, showing improved fitness.",
+      "warmup": "15 minutes easy jogging (E pace), followed by 4 x 100m strides.",
+      "main_set": "6 x 800m at Interval (I) pace (4:40 min/km), with 400m easy jog recovery between each 800m rep.",
+      "cooldown": "15 minutes easy jogging (E pace), followed by static stretches.",
+      "duration_minutes": 65,
+      "distance_km": 10.2
+    },
+    {
+      "day": 40,
+      "title": "Peak Long Run",
+      "type": "long_run",
+      "description": "Your longest run of the training cycle, building maximum endurance and mental fortitude. Maintain an easy, conversational pace throughout to ensure proper adaptation.",
+      "warmup": "5 minutes walking, dynamic stretches.",
+      "main_set": "14 km at Easy (E) pace (6:15-6:45 min/km). Focus on fueling and hydration during and after the run. This is a mental and physical endurance builder.",
+      "cooldown": "5 minutes walking, static stretches, and consider foam rolling.",
+      "duration_minutes": 90,
+      "distance_km": 14.0
+    },
+    {
+      "day": 50,
+      "title": "10K Goal Pace Simulation",
+      "type": "intervals",
+      "description": "A key workout to practice your target 10K race pace. This builds confidence, helps you internalize the feeling of race effort, and tunes your body for the desired pace.",
+      "warmup": "15 minutes easy jogging (E pace), followed by 4 x 100m strides.",
+      "main_set": "2 km easy (E pace), then 2 x 1.5 km at your 10K Goal Pace (5:33 min/km), with 800m easy jog recovery between reps. Finish with 1 km easy (E pace).",
+      "cooldown": "10 minutes easy jogging, followed by static stretches.",
+      "duration_minutes": 55,
+      "distance_km": 7.8
+    },
+    {
+      "day": 58,
+      "title": "Pre-Race Shakeout",
+      "type": "easy_run",
+      "description": "A very short, light run to loosen up your legs, increase blood flow, and keep them feeling fresh before race day. No hard effort; this is purely for activation and mental preparation.",
+      "warmup": "5 minutes walking.",
+      "main_set": "3 km at a very easy, relaxed conversational pace (E pace). Focus on enjoyment and visualizing a strong race.",
+      "cooldown": "5 minutes walking, gentle static stretches.",
+      "duration_minutes": 25,
+      "distance_km": 3.0
+    }
+  ]
+}
+```

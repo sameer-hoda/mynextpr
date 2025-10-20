@@ -1,0 +1,151 @@
+```json
+{
+  "plan_overview": "This 12-day training plan, rooted in the Daniels' running philosophy, focuses on developing all key physiological systems for your 10K goal. It strategically incorporates easy runs for aerobic base, tempo runs for lactate threshold improvement, and VO2 max intervals for speed and efficiency, balanced with crucial rest days for optimal recovery and adaptation.",
+  "workouts": [
+    {
+      "day": 1,
+      "title": "Aerobic Base Builder with Strides",
+      "type": "easy_run",
+      "description": "Build aerobic capacity and gently introduce speed with short, fast strides to improve leg turnover and form.",
+      "warmup": "10 min easy jogging at Zone 2 Aerobic pace (~6:30 min/km).",
+      "main_set": "30 min easy running at Zone 2 Aerobic pace (~6:30 min/km). Follow with 4x100m strides at near maximal effort, with full recovery walk/jog between each.",
+      "cooldown": "10 min easy jogging at Zone 2 Aerobic pace (~6:30 min/km) and dynamic stretching.",
+      "duration_minutes": 50,
+      "distance_km": 7.0,
+      "scheduled_date": "2023-10-27"
+    },
+    {
+      "day": 2,
+      "title": "Lactate Threshold Boost",
+      "type": "tempo_run",
+      "description": "Improve your ability to sustain a comfortably hard pace, enhancing your lactate threshold for better 10K performance.",
+      "warmup": "15 min easy jogging at Zone 2 Aerobic pace (~6:30 min/km).",
+      "main_set": "20 min at Zone 3 Tempo pace (~5:45 min/km).",
+      "cooldown": "15 min easy jogging at Zone 2 Aerobic pace (~6:30 min/km) and stretching.",
+      "duration_minutes": 50,
+      "distance_km": 8.0,
+      "scheduled_date": "2023-10-28"
+    },
+    {
+      "day": 3,
+      "title": "Active Recovery / Rest Day",
+      "type": "rest",
+      "description": "Allow your body to fully recover and adapt to the training stimulus. Focus on hydration and nutrition.",
+      "warmup": "N/A",
+      "main_set": "N/A",
+      "cooldown": "N/A",
+      "duration_minutes": null,
+      "distance_km": null,
+      "scheduled_date": "2023-10-29"
+    },
+    {
+      "day": 4,
+      "title": "Recovery & Aerobic Maintenance",
+      "type": "easy_run",
+      "description": "A light, conversational run to aid recovery from previous hard efforts and maintain aerobic fitness.",
+      "warmup": "5 min easy walk/jog.",
+      "main_set": "35 min easy running at Zone 2 Aerobic pace (~6:30 min/km).",
+      "cooldown": "10 min easy walk/jog at Zone 2 Aerobic pace (~6:30 min/km) and stretching.",
+      "duration_minutes": 50,
+      "distance_km": 7.5,
+      "scheduled_date": "2023-10-30"
+    },
+    {
+      "day": 5,
+      "title": "VO2 Max Development",
+      "type": "intervals",
+      "description": "Improve your maximal oxygen uptake and running economy at higher speeds, crucial for 10K race pace.",
+      "warmup": "15 min easy jogging at Zone 2 Aerobic pace (~6:30 min/km), followed by 4x100m strides.",
+      "main_set": "5 x 800m at Zone 5 VO2max pace (~5:13 min/km) with an equal duration of easy jogging recovery between repetitions (e.g., if 800m takes 4:10, jog for 4:10).",
+      "cooldown": "15 min easy jogging at Zone 2 Aerobic pace (~6:30 min/km) and stretching.",
+      "duration_minutes": 65,
+      "distance_km": 9.0,
+      "scheduled_date": "2023-10-31"
+    },
+    {
+      "day": 6,
+      "title": "Active Recovery Run",
+      "type": "easy_run",
+      "description": "A very relaxed run to promote blood flow, flush out metabolic byproducts, and aid recovery from the interval session.",
+      "warmup": "5 min easy walk.",
+      "main_set": "25 min very easy running at Zone 1 Recovery pace (~7:00 min/km).",
+      "cooldown": "5 min easy walk and stretching.",
+      "duration_minutes": 35,
+      "distance_km": 5.0,
+      "scheduled_date": "2023-11-01"
+    },
+    {
+      "day": 7,
+      "title": "Endurance Build Long Run",
+      "type": "long_run",
+      "description": "Develop cardiovascular endurance and mental toughness, preparing your body for the sustained effort of a 10K.",
+      "warmup": "5 min easy walk.",
+      "main_set": "75 min easy running at Zone 2 Aerobic pace (~6:30 min/km).",
+      "cooldown": "10 min easy walk and stretching.",
+      "duration_minutes": 90,
+      "distance_km": 11.5,
+      "scheduled_date": "2023-11-02"
+    },
+    {
+      "day": 8,
+      "title": "Complete Rest Day",
+      "type": "rest",
+      "description": "Essential full rest to allow for complete recovery after the long run and prepare the body for the next training block.",
+      "warmup": "N/A",
+      "main_set": "N/A",
+      "cooldown": "N/A",
+      "duration_minutes": null,
+      "distance_km": null,
+      "scheduled_date": "2023-11-03"
+    },
+    {
+      "day": 9,
+      "title": "Aerobic Maintenance",
+      "type": "easy_run",
+      "description": "A comfortable run to maintain aerobic fitness and loosen up after the rest day, preparing for upcoming quality work.",
+      "warmup": "10 min easy jogging at Zone 2 Aerobic pace (~6:30 min/km).",
+      "main_set": "30 min easy running at Zone 2 Aerobic pace (~6:30 min/km).",
+      "cooldown": "10 min easy jogging at Zone 2 Aerobic pace (~6:30 min/km) and stretching.",
+      "duration_minutes": 50,
+      "distance_km": 7.0,
+      "scheduled_date": "2023-11-04"
+    },
+    {
+      "day": 10,
+      "title": "Sustained Threshold Effort",
+      "type": "tempo_run",
+      "description": "Further improve your ability to sustain a comfortably hard pace, building on previous tempo work and increasing your lactate threshold capacity.",
+      "warmup": "15 min easy jogging at Zone 2 Aerobic pace (~6:30 min/km).",
+      "main_set": "25 min at Zone 3 Tempo pace (~5:45 min/km).",
+      "cooldown": "15 min easy jogging at Zone 2 Aerobic pace (~6:30 min/km) and stretching.",
+      "duration_minutes": 55,
+      "distance_km": 9.0,
+      "scheduled_date": "2023-11-05"
+    },
+    {
+      "day": 11,
+      "title": "Gentle Aerobic Recovery",
+      "type": "easy_run",
+      "description": "A light, restorative run to promote recovery from the tempo session and maintain your aerobic base without added stress.",
+      "warmup": "5 min easy walk.",
+      "main_set": "30 min easy running at Zone 2 Aerobic pace (~6:30 min/km).",
+      "cooldown": "10 min easy walk/jog at Zone 2 Aerobic pace (~6:30 min/km) and stretching.",
+      "duration_minutes": 45,
+      "distance_km": 6.5,
+      "scheduled_date": "2023-11-06"
+    },
+    {
+      "day": 12,
+      "title": "Full Recovery",
+      "type": "rest",
+      "description": "A complete rest day to allow the body to recover fully and prepare for future training or a race.",
+      "warmup": "N/A",
+      "main_set": "N/A",
+      "cooldown": "N/A",
+      "duration_minutes": null,
+      "distance_km": null,
+      "scheduled_date": "2023-11-07"
+    }
+  ]
+}
+```

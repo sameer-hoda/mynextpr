@@ -1,0 +1,139 @@
+```json
+{
+  "plan_overview": "This two-week Maffetone-based training plan focuses on building aerobic capacity and endurance for your marathon goal. It emphasizes consistent Zone 2 running, with strategic incorporation of longer runs and recovery sessions to prepare you for the demands of the marathon.",
+  "workouts": [
+    {
+      "day": 1,
+      "title": "Aerobic Base Builder",
+      "type": "easy_run",
+      "description": "Focus on establishing a solid aerobic base by running at a comfortable, conversational pace. This run helps improve your body's ability to utilize fat for fuel.",
+      "warmup": "5 minutes of dynamic stretching and light jogging.",
+      "main_set": "Run at Zone 2 aerobic pace for 60 minutes.",
+      "cooldown": "5 minutes of walking and static stretching.",
+      "duration_minutes": 70,
+      "distance_km": null
+    },
+    {
+      "day": 2,
+      "title": "Recovery Spin",
+      "type": "cross_train",
+      "description": "Engage in low-impact cross-training to aid recovery and maintain cardiovascular fitness without stressing your running muscles. Cycling or swimming are excellent options.",
+      "warmup": "N/A",
+      "main_set": "30 minutes of cycling or swimming at a very easy effort.",
+      "cooldown": "N/A",
+      "duration_minutes": 30,
+      "distance_km": null
+    },
+    {
+      "day": 3,
+      "title": "Maffetone Aerobic Run",
+      "type": "easy_run",
+      "description": "Continue building your aerobic engine with a sustained run at your Maffetone heart rate/pace. This is crucial for long-distance endurance.",
+      "warmup": "5 minutes of brisk walking and dynamic movements.",
+      "main_set": "Run at Zone 2 aerobic pace for 75 minutes.",
+      "cooldown": "5 minutes of walking and gentle stretching.",
+      "duration_minutes": 85,
+      "distance_km": null
+    },
+    {
+      "day": 4,
+      "title": "Active Recovery",
+      "type": "rest",
+      "description": "Allow your body to recover and adapt. Light activity like a leisurely walk can be beneficial.",
+      "warmup": null,
+      "main_set": null,
+      "cooldown": null,
+      "duration_minutes": null,
+      "distance_km": null
+    },
+    {
+      "day": 5,
+      "title": "Long Run Preparation",
+      "type": "easy_run",
+      "description": "A moderate-length run at an easy, conversational pace to prepare for the upcoming long run. Focus on consistency and effort.",
+      "warmup": "5 minutes of light jogging.",
+      "main_set": "Run at Zone 2 aerobic pace for 50 minutes.",
+      "cooldown": "5 minutes of walking.",
+      "duration_minutes": 60,
+      "distance_km": null
+    },
+    {
+      "day": 6,
+      "title": "Strength & Conditioning",
+      "type": "strength",
+      "description": "Focus on core strength, glute activation, and leg stability exercises to prevent injuries and improve running economy.",
+      "warmup": "10 minutes of light cardio and dynamic stretching.",
+      "main_set": "Perform exercises like squats, lunges, planks, glute bridges, and calf raises. Aim for 3 sets of 10-15 repetitions.",
+      "cooldown": "10 minutes of static stretching.",
+      "duration_minutes": 45,
+      "distance_km": null
+    },
+    {
+      "day": 7,
+      "title": "Long Run - Aerobic Focus",
+      "type": "long_run",
+      "description": "The key long run of the week, executed entirely at your Zone 2 aerobic pace. This builds endurance and mental toughness for the marathon.",
+      "warmup": "10 minutes of easy jogging.",
+      "main_set": "Run at Zone 2 aerobic pace for 120 minutes.",
+      "cooldown": "10 minutes of walking and thorough stretching.",
+      "duration_minutes": 140,
+      "distance_km": null
+    },
+    {
+      "day": 8,
+      "title": "Recovery Run",
+      "type": "easy_run",
+      "description": "A very short and very easy run to flush out the legs after the long run. Focus on pure recovery and relaxation.",
+      "warmup": "N/A",
+      "main_set": "Run at Zone 1 recovery pace for 30 minutes.",
+      "cooldown": "N/A",
+      "duration_minutes": 30,
+      "distance_km": null
+    },
+    {
+      "day": 9,
+      "title": "Aerobic Endurance",
+      "type": "easy_run",
+      "description": "Continue building your aerobic base with a sustained easy run. This reinforces the principles of Maffetone training.",
+      "warmup": "5 minutes of dynamic warm-up.",
+      "main_set": "Run at Zone 2 aerobic pace for 80 minutes.",
+      "cooldown": "5 minutes of cool-down walk and stretching.",
+      "duration_minutes": 90,
+      "distance_km": null
+    },
+    {
+      "day": 10,
+      "title": "Rest Day",
+      "type": "rest",
+      "description": "Complete rest is essential for muscle repair and adaptation. Prioritize sleep and hydration.",
+      "warmup": null,
+      "main_set": null,
+      "cooldown": null,
+      "duration_minutes": null,
+      "distance_km": null
+    },
+    {
+      "day": 11,
+      "title": "Pre-Long Run Shakeout",
+      "type": "easy_run",
+      "description": "A short, easy run to keep the legs feeling fresh and prepared for the final long run of this block. Maintain a very relaxed pace.",
+      "warmup": "5 minutes of easy jogging.",
+      "main_set": "Run at Zone 2 aerobic pace for 40 minutes.",
+      "cooldown": "5 minutes of walking.",
+      "duration_minutes": 50,
+      "distance_km": null
+    },
+    {
+      "day": 12,
+      "title": "Final Long Run of Block",
+      "type": "long_run",
+      "description": "The longest run of this two-week block, performed at your Maffetone Zone 2 pace. This is a key confidence builder for your marathon goal.",
+      "warmup": "10 minutes of easy jogging.",
+      "main_set": "Run at Zone 2 aerobic pace for 150 minutes.",
+      "cooldown": "10 minutes of walking and stretching.",
+      "duration_minutes": 170,
+      "distance_km": null
+    }
+  ]
+}
+```

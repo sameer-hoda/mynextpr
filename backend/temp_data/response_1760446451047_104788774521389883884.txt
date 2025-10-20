@@ -1,0 +1,151 @@
+```json
+{
+  "plan_overview": "This 12-week Half Marathon training plan is designed for an intermediate 35-year-old runner aiming for a 2:09:30 finish time, guided by the principles of Jack Daniels' Running Formula. The plan focuses on developing all physiological systems crucial for endurance running, using specific training intensities (Easy, Marathon, Threshold, Interval, Repetition paces) derived from your target VDOT (approximately 35). This JSON response provides 12 representative and varied workouts that illustrate the progression and types of sessions you would undertake over the 12-week period, rather than every single workout for all 12 weeks. The full plan would typically include 4-5 running days, 1-2 cross-training/strength days, and 1-2 rest days per week, with gradual increases in volume and intensity, culminating in a taper before race day. These 12 workouts are key examples of the types of training you'll encounter at different stages.",
+  "workouts": [
+    {
+      "day": 1,
+      "title": "Foundation Easy Run",
+      "type": "easy_run",
+      "description": "A foundational easy run to build aerobic base and recover. Focus on maintaining a conversational pace.",
+      "warmup": "10 minutes easy jog, dynamic stretches (leg swings, hip circles, arm circles).",
+      "main_set": "45 minutes at Easy (6:00-6:30 min/km (easy conversational pace)) pace.",
+      "cooldown": "10 minutes easy jog, static stretches (hamstrings, quads, calves, glutes).",
+      "duration_minutes": 65,
+      "distance_km": 7.5,
+      "scheduled_date": "2023-10-27"
+    },
+    {
+      "day": 3,
+      "title": "Core & Leg Strength",
+      "type": "strength",
+      "description": "Essential strength work to improve running economy, prevent injuries, and support higher mileage.",
+      "warmup": "5 minutes light cardio (jogging in place, jumping jacks), dynamic stretches.",
+      "main_set": "Perform 2-3 sets of 10-15 repetitions for each exercise: Squats, Lunges, Glute Bridges, Plank (hold 30-60s), Calf Raises, Bird-Dog. Focus on controlled movements.",
+      "cooldown": "5-10 minutes gentle stretching, focusing on major muscle groups worked.",
+      "duration_minutes": 45,
+      "distance_km": null,
+      "scheduled_date": "2023-10-29"
+    },
+    {
+      "day": 7,
+      "title": "First Long Run",
+      "type": "long_run",
+      "description": "The weekly long run to build endurance and mental toughness. Maintain a comfortable, conversational pace throughout.",
+      "warmup": "10 minutes easy jog, light dynamic stretches.",
+      "main_set": "75 minutes at Easy (6:00-6:30 min/km (easy conversational pace)) pace.",
+      "cooldown": "10-15 minutes easy jog, thorough static stretching, foam rolling if available.",
+      "duration_minutes": 100,
+      "distance_km": 12.5,
+      "scheduled_date": "2023-11-02"
+    },
+    {
+      "day": 22,
+      "title": "Introductory Tempo Run",
+      "type": "tempo_run",
+      "description": "Introduce Threshold pace work to improve lactate threshold and sustained speed. This is 'comfortably hard'.",
+      "warmup": "15 minutes easy jog, dynamic drills (high knees, butt kicks, strides).",
+      "main_set": "20 minutes at Threshold (5:00 min/km (comfortably hard, sustainable for ~60 mins)) pace. Focus on a steady, strong effort you could maintain for about an hour.",
+      "cooldown": "15 minutes easy jog, static stretches.",
+      "duration_minutes": 50,
+      "distance_km": 9.0,
+      "scheduled_date": "2023-11-17"
+    },
+    {
+      "day": 24,
+      "title": "Active Recovery Cross-Train",
+      "type": "cross_train",
+      "description": "Low-impact activity to aid recovery, build cardiovascular fitness without stressing running muscles, and prevent burnout.",
+      "warmup": "5-10 minutes light activity (e.g., easy cycling, walking).",
+      "main_set": "45-60 minutes of cycling, swimming, elliptical, or brisk walking. Maintain a moderate, conversational effort.",
+      "cooldown": "5-10 minutes gentle stretching.",
+      "duration_minutes": 60,
+      "distance_km": null,
+      "scheduled_date": "2023-11-19"
+    },
+    {
+      "day": 40,
+      "title": "First Interval Session",
+      "type": "intervals",
+      "description": "Introduce Interval pace work to improve VO2 max, running economy, and speed endurance. These are hard efforts.",
+      "warmup": "15-20 minutes easy jog, dynamic drills, 4 x 100m strides.",
+      "main_set": "5 x 800m at Interval (4:40 min/km (hard, 5K-10K race effort)) pace, with 400m easy jog recovery between reps.",
+      "cooldown": "15 minutes easy jog, static stretches.",
+      "duration_minutes": 70,
+      "distance_km": 11.5,
+      "scheduled_date": "2023-12-05"
+    },
+    {
+      "day": 43,
+      "title": "Easy Run with Strides",
+      "type": "easy_run",
+      "description": "An easy run with short, fast bursts (strides) to improve leg turnover, form, and introduce speed without taxing the body too much.",
+      "warmup": "10 minutes easy jog, dynamic stretches.",
+      "main_set": "40 minutes at Easy (6:00-6:30 min/km (easy conversational pace)) pace, including 6-8 x 100m Strides (100m accelerations, gradually speeding up to near R-pace, then gradually slowing down.) during the last 15-20 minutes of the run, with ample walk/jog recovery between strides.",
+      "cooldown": "10 minutes easy jog, static stretches.",
+      "duration_minutes": 65,
+      "distance_km": 7.0,
+      "scheduled_date": "2023-12-08"
+    },
+    {
+      "day": 56,
+      "title": "Half Marathon Specific Long Run",
+      "type": "long_run",
+      "description": "Long run with segments at Half Marathon goal pace to simulate race day demands and build confidence.",
+      "warmup": "15 minutes easy jog, light dynamic stretches.",
+      "main_set": "90 minutes total: 30 min Easy (6:00-6:30 min/km (easy conversational pace)), then 3 x (15 min at Half Marathon (5:45 min/km (Half Marathon goal pace)) pace, 5 min Easy (6:00-6:30 min/km (easy conversational pace)) recovery).",
+      "cooldown": "10-15 minutes easy jog, thorough static stretching.",
+      "duration_minutes": 115,
+      "distance_km": 15.5,
+      "scheduled_date": "2023-12-21"
+    },
+    {
+      "day": 59,
+      "title": "Threshold Progression Run",
+      "type": "tempo_run",
+      "description": "A longer threshold session to further develop lactate threshold and sustained speed, preparing for race pace efforts.",
+      "warmup": "15 minutes easy jog, dynamic drills, 2 x 100m strides.",
+      "main_set": "30 minutes at Threshold (5:00 min/km (comfortably hard, sustainable for ~60 mins)) pace. Focus on a strong, steady effort.",
+      "cooldown": "15 minutes easy jog, static stretches.",
+      "duration_minutes": 60,
+      "distance_km": 11.0,
+      "scheduled_date": "2023-12-24"
+    },
+    {
+      "day": 70,
+      "title": "Interval Ladder Session",
+      "type": "intervals",
+      "description": "A challenging interval session to improve VO2 max, speed endurance, and mental toughness. The ladder format keeps it engaging.",
+      "warmup": "20 minutes easy jog, dynamic drills, 4 x 100m strides.",
+      "main_set": "Ladder: 1200m, 1000m, 800m, 600m at Interval (4:40 min/km (hard, 5K-10K race effort)) pace, with equal time easy jog recovery (e.g., 1200m I-pace, 1200m E-pace recovery).",
+      "cooldown": "15 minutes easy jog, static stretches.",
+      "duration_minutes": 75,
+      "distance_km": 13.0,
+      "scheduled_date": "2024-01-04"
+    },
+    {
+      "day": 77,
+      "title": "Peak Long Run",
+      "type": "long_run",
+      "description": "The longest run of the training cycle, building maximum endurance and confidence for race day. Focus on consistent, easy effort.",
+      "warmup": "15 minutes easy jog, light dynamic stretches.",
+      "main_set": "120 minutes at Easy (6:00-6:30 min/km (easy conversational pace)) pace. Stay hydrated and fueled.",
+      "cooldown": "15 minutes easy jog, thorough static stretching, foam rolling.",
+      "duration_minutes": 150,
+      "distance_km": 20.0,
+      "scheduled_date": "2024-01-11"
+    },
+    {
+      "day": 81,
+      "title": "Taper Tempo Tune-Up",
+      "type": "tempo_run",
+      "description": "A short, sharp tempo run during the taper to maintain feel for pace and stimulate the cardiovascular system without adding fatigue.",
+      "warmup": "15 minutes easy jog, dynamic drills, 2 x 100m strides.",
+      "main_set": "15 minutes at Threshold (5:00 min/km (comfortably hard, sustainable for ~60 mins)) pace.",
+      "cooldown": "10 minutes easy jog, static stretches.",
+      "duration_minutes": 40,
+      "distance_km": 7.0,
+      "scheduled_date": "2024-01-15"
+    }
+  ]
+}
+```

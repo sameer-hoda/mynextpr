@@ -1,0 +1,139 @@
+```json
+{
+  "plan_overview": "This two-week plan is designed to sharpen your half marathon fitness with a blend of aerobic development and race-specific intensity.  We'll focus on building endurance with long runs and incorporating speed work at lactate threshold and VO2 max paces to improve your efficiency and race pace.",
+  "workouts": [
+    {
+      "day": 1,
+      "title": "Easy Aerobic Run",
+      "type": "easy_run",
+      "description": "Build aerobic base and aid recovery from previous training.",
+      "warmup": "5-10 minutes of light jogging and dynamic stretching.",
+      "main_set": "4 miles at Zone 2 aerobic pace.",
+      "cooldown": "5 minutes of walking and static stretching.",
+      "duration_minutes": 45,
+      "distance_km": 6.44
+    },
+    {
+      "day": 2,
+      "title": "Lactate Threshold Intervals",
+      "type": "intervals",
+      "description": "Improve your lactate threshold and ability to sustain faster paces.",
+      "warmup": "10 minutes of easy jogging, dynamic stretching, and 2-3 strides.",
+      "main_set": "4 x 800 meters at Zone 4 threshold pace, with 2 minutes of easy jogging recovery between intervals.",
+      "cooldown": "10 minutes of easy jogging and static stretching.",
+      "duration_minutes": 50,
+      "distance_km": 5.6
+    },
+    {
+      "day": 3,
+      "title": "Recovery Run",
+      "type": "easy_run",
+      "description": "Promote blood flow and muscle recovery.",
+      "warmup": "5 minutes of light jogging.",
+      "main_set": "3 miles at Zone 1 recovery pace.",
+      "cooldown": "5 minutes of walking.",
+      "duration_minutes": 30,
+      "distance_km": 4.83
+    },
+    {
+      "day": 4,
+      "title": "Tempo Run",
+      "type": "tempo_run",
+      "description": "Develop your ability to hold a comfortably hard pace for extended periods.",
+      "warmup": "10 minutes of easy jogging and dynamic stretching.",
+      "main_set": "20 minutes at Zone 3 tempo pace.",
+      "cooldown": "10 minutes of easy jogging and static stretching.",
+      "duration_minutes": 40,
+      "distance_km": 6.44
+    },
+    {
+      "day": 5,
+      "title": "Rest",
+      "type": "rest",
+      "description": "Allow your body to recover and adapt to training.",
+      "warmup": null,
+      "main_set": null,
+      "cooldown": null,
+      "duration_minutes": null,
+      "distance_km": null
+    },
+    {
+      "day": 6,
+      "title": "Long Run",
+      "type": "long_run",
+      "description": "Build endurance and practice race-day fueling and hydration.",
+      "warmup": "5 minutes of easy jogging.",
+      "main_set": "10 miles at Zone 2 aerobic pace.  Include 2-3 miles at goal half marathon pace within the run.",
+      "cooldown": "10 minutes of walking and static stretching.",
+      "duration_minutes": 120,
+      "distance_km": 16.09
+    },
+    {
+      "day": 7,
+      "title": "Easy Aerobic Run",
+      "type": "easy_run",
+      "description": "Gentle aerobic effort to aid recovery after the long run.",
+      "warmup": "5 minutes of light jogging.",
+      "main_set": "4 miles at Zone 2 aerobic pace.",
+      "cooldown": "5 minutes of walking and static stretching.",
+      "duration_minutes": 45,
+      "distance_km": 6.44
+    },
+    {
+      "day": 8,
+      "title": "VO2 Max Intervals",
+      "type": "intervals",
+      "description": "Boost your top-end speed and aerobic capacity.",
+      "warmup": "15 minutes of easy jogging, dynamic stretching, and 4 x 100m strides.",
+      "main_set": "6 x 400 meters at Zone 5 VO2 max pace, with 90 seconds of easy jogging recovery between intervals.",
+      "cooldown": "10 minutes of easy jogging and static stretching.",
+      "duration_minutes": 50,
+      "distance_km": 4.8
+    },
+    {
+      "day": 9,
+      "title": "Recovery Run",
+      "type": "easy_run",
+      "description": "Very light effort to promote recovery.",
+      "warmup": "5 minutes of light jogging.",
+      "main_set": "3 miles at Zone 1 recovery pace.",
+      "cooldown": "5 minutes of walking.",
+      "duration_minutes": 30,
+      "distance_km": 4.83
+    },
+    {
+      "day": 10,
+      "title": "Race Pace Simulation",
+      "type": "tempo_run",
+      "description": "Practice running at your goal half marathon pace to build confidence and efficiency.",
+      "warmup": "10 minutes of easy jogging and dynamic stretching.",
+      "main_set": "3 miles at goal half marathon pace (approximately Zone 3/4 boundary).",
+      "cooldown": "10 minutes of easy jogging and static stretching.",
+      "duration_minutes": 45,
+      "distance_km": 7.24
+    },
+    {
+      "day": 11,
+      "title": "Short Easy Run & Strides",
+      "type": "easy_run",
+      "description": "Light shakeout run to stay loose before race day.",
+      "warmup": "5 minutes of easy jogging.",
+      "main_set": "2 miles at Zone 2 aerobic pace, followed by 4 x 100m strides at a comfortably fast pace.",
+      "cooldown": "5 minutes of walking and static stretching.",
+      "duration_minutes": 25,
+      "distance_km": 4.02
+    },
+    {
+      "day": 12,
+      "title": "Rest",
+      "type": "rest",
+      "description": "Complete rest and hydration to be ready for race day.",
+      "warmup": null,
+      "main_set": null,
+      "cooldown": null,
+      "duration_minutes": null,
+      "distance_km": null
+    }
+  ]
+}
+```

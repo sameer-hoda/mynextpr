@@ -1,0 +1,34 @@
+can you review the entire project and scope out the following changes 
+
+read all the .md files and the project files in plan-my-run and backend fodler 
+
+the focus has to be on documenting all the chnages first in plan mode. please do not make any changes to the code base 
+
+1. the flow of the project needs to be more user centric. 
+    if the user has logged in first time and does not have a plan, then the user has to go through the wizrd process of selecting a coach and onboarding to generate a plan. 
+    if the user already has a plan already generated in the db then the user should land on the plan page 
+    please think through all the user states and what the journey should be wit context of the project 
+
+2. when the user is first generating the plan, the placehoilder mock plan is shown, then i have to visit /reset-data and then generate the plan again, only in this scenario does the code call the gemini api to generate the ai plan. this should be happening in the first attempt iteself 
+    can you validate this is happening first and then think how to fix it , and I would request you to remove the mock plan and if there is a failure in ai plan generation, please tell the user that there was a error and to try again in some time with a pop up. also create a log for everytime plan generation fails so i can detect this 
+
+
+3. in the workout detail pop up, on the ffront end i cant see the main workout text, it only shows warm up and cool down part of the workout, can you vlaidate this and fix if it is an issue 
+
+
+4. i want to build an email service that sends an email to the user everyday at 8pm IST wiht details of tomorrow's workout. can you design the email and set up a service that will send this email tot he suer on a sheduled basis. 
+
+for testing i would like to trigger this manually  till i get the format and the structure of this email right. i  do not want this email to get tagged as spam so please think deeply on how to setup this service. also i want metrics like was the mail opened / clicked etc so i can track this, so think of how this can be done 
+
+
+
+
+please scope out these changes in details and take the time to check each and every possible dependency and ensure that the changes will work out of the box with the rest of the code and there are no issues of case or different variables being passed and xpected 
+
+please document all your learnings, steps and details of changes needed in a .md file with a break down of the tasks and detailed testing requried to ensure that the changes are implemented properly 
+
+
+
+ i need a detailed spec for each of the changes with references of the current code, proposed changes , expected dependencies that need to be handled             │
+│   and each one checked step by step to ensure that nothing downstream or upstream will break        
+

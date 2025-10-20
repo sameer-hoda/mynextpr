@@ -1,0 +1,151 @@
+```json
+{
+  "plan_overview": "This two-week plan is designed to sharpen your 10K fitness for a 54:00 goal. It incorporates a mix of easy aerobic running, threshold work, and speed intervals, all guided by Daniels' running philosophy, with built-in rest and cross-training for optimal recovery and well-rounded fitness.",
+  "workouts": [
+    {
+      "day": 1,
+      "title": "Aerobic Base Building",
+      "type": "easy_run",
+      "description": "Focus on building your aerobic base with an easy, conversational run. This run promotes recovery and endurance.",
+      "warmup": "5 minutes easy jogging",
+      "main_set": "40 minutes at Zone 2 aerobic pace.",
+      "cooldown": "5 minutes easy jogging",
+      "duration_minutes": 50,
+      "distance_km": 7.0,
+      "scheduled_date": "2023-10-27"
+    },
+    {
+      "day": 2,
+      "title": "Threshold Intervals",
+      "type": "intervals",
+      "description": "Improve your lactate threshold with challenging threshold intervals. This workout will boost your sustained speed.",
+      "warmup": "10 minutes easy jogging, dynamic stretching",
+      "main_set": "4 x 1000m at Zone 4 threshold pace, with 2 minutes rest (jogging or walking) between intervals.",
+      "cooldown": "10 minutes easy jogging",
+      "duration_minutes": 45,
+      "distance_km": 6.5,
+      "scheduled_date": "2023-10-28"
+    },
+    {
+      "day": 3,
+      "title": "Recovery Run",
+      "type": "easy_run",
+      "description": "A very easy run to promote blood flow and aid muscle recovery. Focus on relaxation.",
+      "warmup": "5 minutes easy jogging",
+      "main_set": "25 minutes at Zone 1 recovery pace.",
+      "cooldown": "5 minutes easy jogging",
+      "duration_minutes": 35,
+      "distance_km": 4.0,
+      "scheduled_date": "2023-10-29"
+    },
+    {
+      "day": 4,
+      "title": "Cross-Training",
+      "type": "cross_train",
+      "description": "Engage in low-impact cross-training to maintain cardiovascular fitness without the stress of running. This aids in recovery and injury prevention.",
+      "warmup": null,
+      "main_set": "45 minutes of cycling, swimming, or elliptical at a moderate intensity.",
+      "cooldown": null,
+      "duration_minutes": 45,
+      "distance_km": null,
+      "scheduled_date": "2023-10-30"
+    },
+    {
+      "day": 5,
+      "title": "Tempo Run",
+      "type": "tempo_run",
+      "description": "Develop your ability to sustain a comfortably hard pace. This tempo run will enhance your race-day efficiency.",
+      "warmup": "10 minutes easy jogging",
+      "main_set": "20 minutes at Zone 3 tempo pace.",
+      "cooldown": "10 minutes easy jogging",
+      "duration_minutes": 40,
+      "distance_km": 6.0,
+      "scheduled_date": "2023-10-31"
+    },
+    {
+      "day": 6,
+      "title": "VO2 Max Intervals",
+      "type": "intervals",
+      "description": "Push your limits with short, fast VO2 max intervals. This workout is crucial for improving your top-end speed.",
+      "warmup": "10 minutes easy jogging, dynamic stretching",
+      "main_set": "6 x 600m at Zone 5 VO2 max pace, with 90 seconds rest (jogging or walking) between intervals.",
+      "cooldown": "10 minutes easy jogging",
+      "duration_minutes": 40,
+      "distance_km": 5.0,
+      "scheduled_date": "2023-11-01"
+    },
+    {
+      "day": 7,
+      "title": "Rest Day",
+      "type": "rest",
+      "description": "Complete rest to allow your body to recover and adapt to the training stimulus. Essential for preventing overtraining.",
+      "warmup": null,
+      "main_set": null,
+      "cooldown": null,
+      "duration_minutes": null,
+      "distance_km": null,
+      "scheduled_date": "2023-11-02"
+    },
+    {
+      "day": 8,
+      "title": "Aerobic Endurance",
+      "type": "easy_run",
+      "description": "A longer, easy run to continue building your aerobic foundation. Focus on a relaxed effort and consistent pacing.",
+      "warmup": "5 minutes easy jogging",
+      "main_set": "55 minutes at Zone 2 aerobic pace.",
+      "cooldown": "5 minutes easy jogging",
+      "duration_minutes": 65,
+      "distance_km": 9.0,
+      "scheduled_date": "2023-11-03"
+    },
+    {
+      "day": 9,
+      "title": "Threshold Practice",
+      "type": "tempo_run",
+      "description": "Sustain a comfortably hard pace for a longer duration to hone your threshold running. This simulates race-like effort.",
+      "warmup": "10 minutes easy jogging",
+      "main_set": "25 minutes at Zone 3 tempo pace.",
+      "cooldown": "10 minutes easy jogging",
+      "duration_minutes": 45,
+      "distance_km": 7.0,
+      "scheduled_date": "2023-11-04"
+    },
+    {
+      "day": 10,
+      "title": "Short Intervals",
+      "type": "intervals",
+      "description": "Sharp, short intervals to maintain leg speed and efficiency. This workout focuses on quick turnover.",
+      "warmup": "10 minutes easy jogging, dynamic stretching",
+      "main_set": "8 x 400m at Zone 5 VO2 max pace, with 60 seconds rest (jogging or walking) between intervals.",
+      "cooldown": "10 minutes easy jogging",
+      "duration_minutes": 40,
+      "distance_km": 5.5,
+      "scheduled_date": "2023-11-05"
+    },
+    {
+      "day": 11,
+      "title": "Pre-Race Tune-up",
+      "type": "easy_run",
+      "description": "A very light and easy run to keep the legs moving and stay loose before the race. Focus on feeling good.",
+      "warmup": "5 minutes easy jogging",
+      "main_set": "20 minutes at Zone 1 recovery pace.",
+      "cooldown": "5 minutes easy jogging",
+      "duration_minutes": 30,
+      "distance_km": 3.5,
+      "scheduled_date": "2023-11-06"
+    },
+    {
+      "day": 12,
+      "title": "Rest Day",
+      "type": "rest",
+      "description": "Complete rest to ensure you are fully recovered and ready for your 10K race. Prioritize sleep and hydration.",
+      "warmup": null,
+      "main_set": null,
+      "cooldown": null,
+      "duration_minutes": null,
+      "distance_km": null,
+      "scheduled_date": "2023-11-07"
+    }
+  ]
+}
+```
