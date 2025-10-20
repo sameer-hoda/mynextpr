@@ -1,12 +1,10 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Preferences } from '@capacitor/preferences';
-import { useAuth } from '@/contexts/AuthContext'; // Assuming useAuth has a method to set the user from token
 
 const AuthCallback = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { loadUserFromToken } = useAuth(); // You'll need to implement this in your AuthContext
 
   useEffect(() => {
     const handleAuthCallback = async () => {
@@ -14,22 +12,20 @@ const AuthCallback = () => {
       const token = params.get('token');
 
       if (token) {
-        // Store the token and load the user profile
+        // Store the token in both Capacitor Preferences and localStorage for web compatibility
         await Preferences.set({ key: 'authToken', value: token });
-        await loadUserFromToken(token);
-
-        // After user is loaded, check for a plan and redirect
-        // Note: We are navigating from the callback, but the main Index page also has this logic.
-        // This ensures a smooth flow even if the user lands here directly.
-        navigate('/plan'); 
+        localStorage.setItem('authToken', token);
+        
+        // Redirect to the root. The main App/Index component will handle the rest.
+        navigate('/');
       } else {
-        // Handle error or no token case
+        // Handle error or no token case by sending to the home page.
         navigate('/');
       }
     };
 
     handleAuthCallback();
-  }, [location, navigate, loadUserFromToken]);
+  }, [location, navigate]);
 
   return <div>Loading...</div>;
 };
