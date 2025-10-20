@@ -9,26 +9,26 @@ const AuthCallback = () => {
   const { loadUserFromToken } = useAuth(); // You'll need to implement this in your AuthContext
 
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const token = params.get('token');
+    const handleAuthCallback = async () => {
+      const params = new URLSearchParams(location.search);
+      const token = params.get('token');
 
-    if (token) {
-      const storeTokenAndRedirect = async () => {
-        // Store the token
+      if (token) {
+        // Store the token and load the user profile
         await Preferences.set({ key: 'authToken', value: token });
-        
-        // Update the auth context
         await loadUserFromToken(token);
 
-        // Redirect to the main app page
-        navigate('/plan');
-      };
+        // After user is loaded, check for a plan and redirect
+        // Note: We are navigating from the callback, but the main Index page also has this logic.
+        // This ensures a smooth flow even if the user lands here directly.
+        navigate('/plan'); 
+      } else {
+        // Handle error or no token case
+        navigate('/');
+      }
+    };
 
-      storeTokenAndRedirect();
-    } else {
-      // Handle error or no token case
-      navigate('/');
-    }
+    handleAuthCallback();
   }, [location, navigate, loadUserFromToken]);
 
   return <div>Loading...</div>;
