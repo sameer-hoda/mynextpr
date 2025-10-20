@@ -2,7 +2,7 @@
 
 import { Preferences } from '@capacitor/preferences';
 
-const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
 
 class ApiClient {
   private async request(endpoint: string, options: RequestInit = {}) {
