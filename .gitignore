@@ -22,3 +22,4 @@ backend/runna.db
 
 # macOS specific
 .DS_Store
+project.tar.gz
