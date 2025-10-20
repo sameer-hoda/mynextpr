@@ -1,5 +1,6 @@
 // src/contexts/AuthContext.tsx
 
+import { Capacitor } from '@capacitor/core';
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { Preferences } from '@capacitor/preferences';
 import { apiClient } from '@/integrations/api/client';
@@ -62,11 +63,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-import { Capacitor } from '@capacitor/core';
 
-// ... (rest of the imports)
-
-// ... (inside the AuthProvider component)
 
   const signInWithGoogle = () => {
     const origin = Capacitor.isNativePlatform() ? 'mobile' : 'web';
