@@ -1,6 +1,7 @@
 {
   "apps": [
     {
+      "appId": "023a5e68",
       "name": "plan-my-run",
       "root": "./plan-my-run"
     }
