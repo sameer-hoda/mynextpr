@@ -64,8 +64,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   const signInWithGoogle = () => {
-    const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
-    window.location.href = `${backendUrl}/auth/google`;
+    // Use VITE_API_URL which is set in the Appflow build environment
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+    // The VITE_API_URL includes the /api path, so we just append the specific endpoint
+    window.location.href = `${apiUrl}/auth/google`;
   };
 
   const signInAsTestUser = async () => {
