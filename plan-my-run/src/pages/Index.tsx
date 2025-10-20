@@ -7,7 +7,7 @@ import { Loader2 } from 'lucide-react';
 import backgroundImage from '@/assets/running-track-bg.jpg';
 
 const Index = () => {
-  const { signInWithGoogle, signInAsTestUser, user, loading: authLoading } = useAuth();
+  const { signInWithGoogle, user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
@@ -45,15 +45,7 @@ const Index = () => {
     }
   };
 
-  const handleTestUserLogin = async () => {
-    try {
-      setLoading(true);
-      await signInAsTestUser();
-    } catch (error) {
-      console.error("Error signing in as test user:", error);
-      setLoading(false);
-    }
-  };
+
 
   if (authLoading || user) {
     return (
@@ -116,15 +108,7 @@ const Index = () => {
             </>
           )}
         </Button>
-        <Button
-          size="lg"
-          variant="secondary"
-          className="mt-4"
-          onClick={handleTestUserLogin}
-          disabled={loading}
-        >
-          Continue as Test User
-        </Button>
+
       </div>
     </div>
   );

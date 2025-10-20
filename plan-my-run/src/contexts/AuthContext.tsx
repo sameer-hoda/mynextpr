@@ -17,7 +17,6 @@ interface AuthContextType {
   profile: any | null;
   loading: boolean;
   signInWithGoogle: () => void;
-  signInAsTestUser: () => Promise<void>;
   signOut: () => Promise<void>;
   refreshProfile: () => Promise<void>;
 }
@@ -75,23 +74,7 @@ import { Capacitor } from '@capacitor/core';
     window.location.href = `${apiUrl}/auth/google?origin=${origin}`;
   };
 
-  const signInAsTestUser = async () => {
-    const randomId = `testuser_${Date.now()}`;
-    const testUser: User = {
-      id: randomId,
-      email: `${randomId}@example.com`,
-      displayName: 'Test User',
-    };
 
-    // This is a mock JWT. In a real app, the backend would create this.
-    const mockToken = btoa(JSON.stringify({ id: testUser.id, email: testUser.email, displayName: testUser.displayName })) + '.' + btoa(JSON.stringify({})) + '.' + btoa(JSON.stringify({}));
-    
-    await Preferences.set({ key: 'authToken', value: mockToken });
-    localStorage.setItem('authToken', mockToken);
-    
-    setUser(testUser);
-    await fetchProfile(testUser.id);
-  };
 
   const signOut = async () => {
     await Preferences.remove({ key: 'authToken' });
@@ -111,7 +94,6 @@ import { Capacitor } from '@capacitor/core';
     profile,
     loading,
     signInWithGoogle,
-    signInAsTestUser,
     signOut,
     refreshProfile
   };
