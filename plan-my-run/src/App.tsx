@@ -24,7 +24,8 @@ const AppContent = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const listener = CapacitorApp.addListener('backButton', ({ canGoBack }) => {
+    // Handle the back button
+    const backButtonListener = CapacitorApp.addListener('backButton', ({ canGoBack }) => {
       if (!canGoBack) {
         CapacitorApp.exitApp();
       } else {
@@ -32,8 +33,18 @@ const AppContent = () => {
       }
     });
 
+    // Handle deep links
+    const urlOpenListener = CapacitorApp.addListener('appUrlOpen', (event) => {
+      // Example URL: com.runna.app://auth/callback?token=...
+      const slug = event.url.split(".app").pop();
+      if (slug) {
+        navigate(slug);
+      }
+    });
+
     return () => {
-      listener.remove();
+      backButtonListener.remove();
+      urlOpenListener.remove();
     };
   }, [navigate]);
 

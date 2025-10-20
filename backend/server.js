@@ -932,8 +932,12 @@ function startApp() {
       const jwtPayload = { id: user.id, email: user.email, displayName: user.displayName, avatar: user.avatar };
       const token = jwt.sign(jwtPayload, process.env.JWT_SECRET, { expiresIn: '30d' });
 
-      const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:8080';
-      res.redirect(`${frontendUrl}/auth/callback?token=${token}`);
+      // This redirect will now use the custom URL scheme to reopen the mobile app.
+      // NOTE: This will break the login flow for the web version of the app.
+      // A more robust solution would involve using the 'state' parameter to determine
+      // whether the original request came from web or mobile.
+      const mobileCallbackUrl = 'com.runna.app://auth/callback';
+      res.redirect(`${mobileCallbackUrl}?token=${token}`);
     }
   );
 
