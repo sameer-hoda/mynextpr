@@ -1,198 +1,81 @@
-# Comprehensive End-to-End Changes Document: Runna Project Migration
+# Comprehensive End-to-End Changes Document
 
-## Project Overview
-The Runna project is a running plan generator that currently stores data in a local SQLite database and uses Supabase functions for AI-based plan generation. The goal is to:
-1. Ensure all data is stored in a local SQLite database
-2. Change AI generation to use the Gemini API with the gemini-2.5-flash model
+This document summarizes the entire process of converting the `mynextpr` web application into a native mobile app, setting up a cloud-based build system, and deploying all necessary backend changes to the live EC2 server. It covers the challenges encountered, the solutions implemented, and the final state of the project.
 
-## Current State Analysis
+---
 
-### Database Implementation
-- **Backend**: Uses SQLite database (runna.db) with sqlite3 Node.js package
-- **Tables**: profiles, plans, workouts
-- **Frontend**: Communicates with backend via REST API endpoints
-- **Current Status**: Already using local SQLite database
+### **Phase 1: Initial Goal & Local Mobile Build**
 
-### AI Generation Implementation
-- **Current Location**: Supabase function at `/supabase/functions/generate-plan/index.ts`
-- **Current Model**: google/gemini-2.5-flash via Lovable AI gateway
-- **Frontend Flow**: Loading.tsx generates mock data instead of calling AI API
-- **Current Status**: AI model is already the target gemini-2.5-flash, but frontend doesn't call it
+The primary objective was to take the existing React web application and package it as native Android and iOS apps using Capacitor, while ensuring the live web application at `mynextpr.com` remained functional.
 
-## Required Changes Overview
+**Challenges Encountered:**
+*   **Android Emulator Instability:** Initial attempts to run the app on a local Android emulator were met with `Broken pipe` and `System UI not responding` errors.
+    *   **Solution:** Diagnosed that the issue was caused by an unstable Android 15 Developer Preview (API 35). The problem was resolved by creating a new emulator with a stable public version of Android (API 34).
+*   **Local Development Complexity:** The user found the process of managing local Android Studio and Xcode installations to be too cumbersome.
+    *   **Solution:** We pivoted to using **Ionic Appflow**, a cloud-based CI/CD service, to handle the native app builds. This eliminated the need for a local native development environment.
 
-### Change 1: Enable AI Plan Generation in Frontend
-**Current Issue**: Loading.tsx creates mock workouts instead of calling AI API
-**Required Files to Modify**: 
-- `/plan-my-run/src/pages/Loading.tsx`
-- `/plan-my-run/src/integrations/api/client.ts`
+---
 
-### Change 2: Integrate AI Generation with Local SQLite Database
-**Current Issue**: Supabase function saves to Supabase DB, but frontend needs to save to local SQLite
-**Required Files to Modify**:
-- `/backend/server.js` (may need new API endpoint)
-- `/plan-my-run/supabase/functions/generate-plan/index.ts` (modify to return plan data instead of storing to Supabase)
-- `/plan-my-run/src/pages/Loading.tsx` (handle response and save to local SQLite via backend)
+### **Phase 2: Cloud Build Setup & Troubleshooting (Ionic Appflow)**
 
-## Detailed File-by-File Changes
+To enable cloud builds, the project was pushed to a GitHub repository and connected to Ionic Appflow. This phase involved an iterative debugging process to get the first successful build.
 
-### 1. `/plan-my-run/src/pages/Loading.tsx`
-**Current Behavior**: Generates mock workout data and saves to local SQLite via backend API
-**Required Changes**:
-- Replace mock data generation with API call to AI generation endpoint
-- Handle AI response and save the generated plan to local SQLite database
-- Add error handling for AI generation failures
-- Implement proper loading states and timeout handling
-- Maintain existing UI/UX flow and navigation
-- Add fallback mechanism to mock data if AI fails
+**Challenges Encountered:**
+1.  **Git Initialization Failure:** The initial `git commit` failed because files were not staged.
+    *   **Solution:** Corrected the Git command sequence by running `git add .` before `git commit`.
+2.  **GitHub Push Protection:** The push was blocked because sensitive `.env` files containing secrets were included in the commit.
+    *   **Solution:** Created a `.gitignore` file to exclude all `.env` files and `node_modules`. The sensitive files were then removed from the Git history using `git rm --cached` and the commit was amended.
+3.  **Build Failure 1: Submodule Errors:** The build failed because the `plan-my-run` and a backup folder contained their own `.git` repositories, which Git treated as invalid submodules.
+    *   **Solution:** Systematically removed the nested `.git` directories and the submodule links from the main repository's tracking, then re-added the folders so their contents were tracked directly.
+4.  **Build Failure 2: `package.json` Not Found:** Appflow could not find the project's `package.json` because it was in the `plan-my-run` subdirectory, not the repository root.
+    *   **Solution:** Created an `appflow.config.json` file in the root directory to specify the `root` of the mobile app project.
+5.  **Build Failure 3: Missing `appId`:** The build failed because the `appflow.config.json` was missing the unique App ID from the Ionic dashboard.
+    *   **Solution:** Added the correct `appId` to the `appflow.config.json` file.
+6.  **Build Failure 4: Android Platform Not Added:** The `npx cap sync` command failed because the native `android` project directory did not exist in the repository.
+    *   **Solution:** The `android` directory, which was previously ignored, was forcibly added to the Git repository using `git add -f`.
 
-### 2. `/plan-my-run/src/integrations/api/client.ts`
-**Current Behavior**: Provides methods for CRUD operations on profiles, plans, and workouts
-**Required Changes**:
-- Add new method `generatePlanWithAI(userData)` to call the AI generation endpoint
-- The method should accept user profile data and return generated plan
-- Implement proper error handling and timeout mechanisms
-- Add request/response logging for debugging
+**Outcome:** After these fixes, the Ionic Appflow build succeeded, producing a downloadable `.apk` file.
 
-### 3. `/backend/server.js`
-**Current Behavior**: Provides REST API endpoints for data CRUD operations
-**Required Changes**:
-- Add new API endpoint `/api/generate-plan` that handles AI plan generation
-- This endpoint should:
-  - Accept user profile data (goalDistance, goalTime, fitnessLevel, age, sex, coachPersona)
-  - Validate input data format and range
-  - Call the Gemini API (using gemini-2.5-flash model) with appropriate prompts
-  - Handle AI API errors and timeouts gracefully
-  - Save the generated plan and workouts to local SQLite database
-  - Return the generated plan data to the frontend
-  - Implement rate limiting to control API usage costs
-  - Add proper logging for monitoring and debugging
+---
 
-### 4. `/plan-my-run/supabase/functions/generate-plan/index.ts`
-**Current Behavior**: Uses Lovable AI gateway to call Gemini API and saves directly to Supabase database
-**Required Changes**:
-- Option A: Modify to return AI-generated plan data without saving to Supabase, for the backend to handle storage to SQLite
-- Option B: Remove this Supabase function entirely and implement AI generation directly in the backend server.js
-- **Recommendation**: Option B - Move AI logic to backend server.js and remove dependency on Supabase functions
+### **Phase 3: Runtime Debugging & Core Functionality Fixes**
 
-### 5. Environment Variables
-**Current**: Both root and backend .env files contain GEMINI_API_KEY
-**Required Changes**: 
-- Ensure both backend and frontend can access the necessary configuration
-- Consider backend-only API key access (don't expose in frontend)
+The successfully built app had several runtime issues that needed to be addressed.
 
-## Additional Implementation Considerations
+**Challenges Encountered:**
+1.  **White Screen on Launch:** The app installed but showed a blank white screen.
+    *   **Solution:** Using Chrome Remote Debugging, we identified a `ReferenceError: useNavigate is not defined` in `App.tsx`. This was fixed by restructuring the component to ensure the `useNavigate` hook was called correctly within the context of the `BrowserRouter`.
+2.  **Login Redirected to `localhost`:** The Google Login button redirected to the wrong backend URL.
+    *   **Solution:** Audited the frontend code and found that both `AuthContext.tsx` and `apiClient.ts` were using an incorrect environment variable (`VITE_BACKEND_URL`). This was corrected to use `VITE_API_URL`, which was configured in the Appflow build environment.
+3.  **Login Flow Stuck in Browser:** After a successful Google login, the user was redirected to the website in the browser instead of returning to the mobile app.
+    *   **Solution:** A robust, platform-aware authentication flow was implemented:
+        *   The frontend now detects if it's a mobile or web platform and sends an `origin` parameter to the backend.
+        *   The backend was updated to use this `origin` parameter to intelligently redirect users to either the website (`https://mynextpr.com/...`) or a custom app URL scheme (`com.runna.app://...`).
+        *   The Android app was configured to respond to this custom URL scheme, and the frontend was updated to handle the deep link, bringing the user back into the app seamlessly.
 
-### 1. Data Schema Compatibility
-- Verify that AI-generated plan structure matches SQLite schema requirements
-- Update database schema if needed to accommodate new fields from AI responses
-- Handle potential discrepancies between AI output and expected database fields
+---
 
-### 2. Input Validation and Sanitization
-- Add validation for user inputs (goalDistance, goalTime, fitnessLevel, age, sex, coachPersona)
-- Sanitize inputs to prevent prompt injection attacks
-- Validate coachPersona against supported values
+### **Phase 4: Live Deployment to EC2 & Server-Side Fixes**
 
-### 3. Error Handling and Fallbacks
-- Implement retry logic for AI API calls
-- Add timeout handling (recommend 30-second limits)
-- Provide fallback to mock data generation when AI is unavailable
-- Include specific error messages for different failure scenarios
+The final step was to deploy all the backend and frontend fixes to the live server at `mynextpr.com`.
 
-### 4. Security and Performance
-- Implement rate limiting to control Gemini API costs
-- Secure API key access (backend-only)
-- Add input sanitization to prevent malicious prompts
-- Consider caching common plan types to reduce API usage
+**Challenges Encountered:**
+1.  **"Test User" Button in Production:** The user requested the removal of the "Continue as Test User" button before the final deployment.
+    *   **Solution:** The button and its corresponding logic were removed from `Index.tsx` and `AuthContext.tsx`.
+2.  **Deployment Caused Site Outage:** An initial, incorrect deployment caused the live website to fail with the `useNavigate` error.
+    *   **Solution:** A full rollback was performed on the EC2 server by restoring the code from a timestamped backup that was created before the deployment began.
+3.  **Server Build Failure (`sharp`/`libvips`):** The deployment script failed during `npm install` on the EC2 server because the `sharp` library could not be compiled.
+    *   **Solution:** After confirming that the required `libvips` library was not available in the server's repositories, the root cause was traced to the `@capacitor/assets` dev dependency. This package was removed from `package.json`, and a clean `package-lock.json` was generated and committed to the repository to permanently remove `sharp` from the dependency tree.
+4.  **Server Runtime Failure (`JWT_SECRET`):** After a successful deployment, the login flow failed because the `JWT_SECRET` environment variable was not available to the application.
+    *   **Solution:** The `.env` file, which was correctly excluded from the repository, was created directly on the server with the correct production values. The PM2 process was then deleted and restarted to ensure it loaded the new environment variables.
+5.  **Final Redirect Polish:** The post-login redirect was still not seamless, leaving the user on a blank "Loading..." page.
+    *   **Solution:** The logic in `AuthCallback.tsx` was simplified to only save the token and redirect to the root (`/`). This allows the main `Index.tsx` component to handle all post-login routing, creating a single, reliable flow. This final fix was then deployed to the server.
 
-### 5. Testing Strategy
-- Unit tests for AI generation endpoint
-- Integration tests for data flow from AI to database
-- End-to-end tests for complete user journey
-- Error scenario testing (API failures, timeouts, etc.)
+---
 
-### 6. Monitoring and Observability
-- Add logging for AI API calls and responses
-- Monitor API usage and costs
-- Track error rates and performance metrics
-- Add health checks for AI integration
+### **Final Outcome**
 
-### 7. Edit Plan Feature Enhancement
-- Consider implementing the unused `/plan-my-run/src/components/plan/EditPlanModal.tsx`
-- Create new AI endpoint for plan modifications
-- Add edit credits/limits to prevent excessive API usage
-
-## Implementation Strategy
-
-### Phase 1: Backend AI Integration
-1. Implement Gemini API integration directly in `/backend/server.js`
-2. Add input validation and sanitization
-3. Add `/api/generate-plan` endpoint
-4. Implement rate limiting and error handling
-5. Add proper logging and monitoring
-6. Test API endpoint independently
-
-### Phase 2: Frontend Integration
-1. Update `/plan-my-run/src/integrations/api/client.ts` to include AI generation method
-2. Modify `/plan-my-run/src/pages/Loading.tsx` to call AI endpoint instead of generating mock data
-3. Implement proper loading states and error handling
-4. Ensure proper data flow from AI response to SQLite storage
-5. Test full flow from frontend to backend to database
-
-### Phase 3: Additional Features and Testing
-1. Consider implementing EditPlanModal for plan modifications
-2. Conduct comprehensive testing (unit, integration, end-to-end)
-3. Performance testing and optimization
-4. Security and validation testing
-
-### Phase 4: Production Preparation
-1. Implement environment-specific configurations
-2. Set up monitoring and alerting for API usage
-3. Add cost control measures
-4. Prepare deployment documentation
-
-## Dependencies and Technologies
-
-### Current Dependencies
-- Frontend: React, TypeScript, Vite, Supabase JS client
-- Backend: Node.js, Express, SQLite3, Passport for auth
-- AI: Google Gemini 2.5 Flash model (currently via Lovable gateway)
-
-### Required Dependencies
-- Google Generative AI package for Node.js (or direct fetch calls to Gemini API)
-- Rate limiting middleware (e.g., express-rate-limit)
-- Logging library (e.g., winston or pino)
-- Keep existing SQLite, Express, and React dependencies
-
-## Risk Assessment
-
-### High Risk Items
-1. Changing from mock data to actual AI calls could introduce latency issues
-2. AI generation failures could break user flow
-3. Moving from Supabase functions to backend might lose existing functionality
-4. Potential increase in operational costs from AI API usage
-5. Security vulnerabilities from prompt injection
-
-### Mitigation Strategies
-1. Implement proper loading states, timeout handling, and progress indicators
-2. Keep fallback mock data generation as backup
-3. Thorough testing of the new backend AI integration
-4. Implement rate limiting and usage monitoring
-5. Input sanitization and validation to prevent prompt injection
-6. Comprehensive error handling and graceful degradation
-
-## Success Criteria
-
-### Functional Requirements
-1. All user data (profiles, plans, workouts) stored in local SQLite database
-2. Running plan generation powered by Gemini 2.5 Flash model
-3. Frontend successfully receives AI-generated plans and stores to local database
-4. All existing functionality remains intact
-5. Edit plan functionality (if implemented) works with AI
-
-### Non-Functional Requirements
-1. Response times for plan generation remain acceptable (under 30 seconds)
-2. Error handling for API failures is robust
-3. Data integrity is maintained during the transition
-4. API costs are controlled and monitored
-5. Security measures prevent abuse and injection attacks
+*   The `mynextpr.com` website is fully functional, with a robust authentication system that supports both web and mobile clients.
+*   The project is configured for cloud-based native builds via Ionic Appflow, removing the need for local native SDKs.
+*   The mobile app login flow is seamless, correctly redirecting from the external browser back into the application.
+*   All debugging artifacts and temporary fixes (like the "Test User" button) have been removed from the production codebase.

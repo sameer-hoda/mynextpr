@@ -24,28 +24,33 @@ const AppContent = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Handle the back button
-    const backButtonListener = CapacitorApp.addListener('backButton', ({ canGoBack }) => {
-      if (!canGoBack) {
-        CapacitorApp.exitApp();
-      } else {
-        navigate(-1);
-      }
-    });
+    const registerListeners = async () => {
+      // Handle the back button
+      await CapacitorApp.addListener('backButton', ({ canGoBack }) => {
+        if (!canGoBack) {
+          CapacitorApp.exitApp();
+        } else {
+          navigate(-1);
+        }
+      });
 
-    // Handle deep links
-    const urlOpenListener = CapacitorApp.addListener('appUrlOpen', (event) => {
-      // Example URL: com.runna.app://auth/callback?token=...
-      const slug = event.url.split(".app").pop();
-      if (slug) {
-        navigate(slug);
-      }
-    });
-
-    return () => {
-      backButtonListener.remove();
-      urlOpenListener.remove();
+      // Handle deep links
+      await CapacitorApp.addListener('appUrlOpen', (event) => {
+        // Correctly parse the URL to get the path and search params
+        // Example URL: com.runna.app://auth/callback?token=...
+        const url = new URL(event.url);
+        const path = url.pathname + url.search; // This will correctly be /auth/callback?token=...
+        navigate(path);
+      });
     };
+
+    const cleanup = () => {
+      CapacitorApp.removeAllListeners();
+    };
+
+    registerListeners();
+
+    return cleanup;
   }, [navigate]);
 
   return (
