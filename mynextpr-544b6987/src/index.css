@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* MyNextPR Premium Theme */
+    --background: 222 60% 5%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 10%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 60% 5%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 199 89% 48%;
+    --accent-foreground: 222 60% 5%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 18%;
+    --input: 217 33% 18%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.5rem;
+
+    /* MyNextPR Palette */
+    --pr-deep: 222 60% 5%;
+    --pr-navy: 222 47% 11%;
+    --pr-electric: 217 91% 60%;
+    --pr-cyan: 180 100% 60%;
+    --pr-muted: 215 20% 65%;
+
+    /* Radial Gradient Background */
+    --gradient-radial: radial-gradient(ellipse at 50% 40%, hsl(222 47% 11%) 0%, hsl(222 60% 3%) 70%);
+    --gradient-glow: radial-gradient(ellipse at 50% 40%, hsl(217 91% 60% / 0.08) 0%, transparent 50%);
+
+    /* Glassmorphism */
+    --glass-bg: hsl(210 40% 98% / 0.08);
+    --glass-border: hsl(210 40% 98% / 0.15);
+
+    /* Typography */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+    background: var(--gradient-radial);
+  }
+}
+
+@layer components {
+
+  /* Scan Line - refined cyan laser */
+  .scan-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        hsl(var(--pr-electric)) 20%,
+        hsl(var(--pr-cyan)) 50%,
+        hsl(var(--pr-electric)) 80%,
+        transparent 100%);
+    box-shadow:
+      0 0 20px 8px hsl(var(--pr-cyan) / 0.5),
+      0 0 40px 15px hsl(var(--pr-electric) / 0.3);
+    z-index: 30;
+  }
+
+  /* Frosted Glass Button - Premium */
+  .glass-button {
+    @apply relative flex items-center justify-center gap-3;
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-button:hover {
+    background: hsl(var(--pr-electric) / 0.2);
+    border-color: hsl(var(--pr-electric) / 0.5);
+    box-shadow: 0 0 50px hsl(var(--pr-electric) / 0.4);
+    transform: translateY(-2px);
+  }
+
+  /* Solid Electric Button Variant */
+  .solid-button {
+    @apply relative flex items-center justify-center gap-3;
+    background: hsl(var(--pr-electric));
+    border: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .solid-button:hover {
+    background: hsl(217 91% 65%);
+    box-shadow: 0 0 60px hsl(var(--pr-electric) / 0.5);
+    transform: translateY(-2px);
+  }
+
+  /* Logo text - MyNextPR */
+  .logo-text {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: hsl(var(--foreground));
+  }
+
+  /* Gradient Headline */
+  .headline-gradient {
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    background: linear-gradient(180deg, hsl(210 40% 98%) 0%, hsl(215 20% 70%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .headline-secondary {
+    font-weight: 400;
+    letter-spacing: 0;
+    color: hsl(var(--pr-muted));
+  }
+
+  /* Subtle corner brackets */
+  .corner-bracket {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-color: hsl(var(--pr-cyan) / 0.5);
+  }
+
+  /* Breathing glow animation for button */
+  @keyframes breathing-glow {
+
+    0%,
+    100% {
+      box-shadow: 0 0 20px hsl(var(--pr-electric) / 0.3), 0 0 0 0 hsl(var(--pr-electric) / 0.2);
+    }
+
+    50% {
+      box-shadow: 0 0 40px hsl(var(--pr-electric) / 0.5), 0 0 0 8px hsl(var(--pr-electric) / 0);
+    }
+  }
+
+  .pulse-ring {
+    animation: breathing-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@layer utilities {
+  .text-electric {
+    color: hsl(var(--pr-electric));
+  }
+
+  .bg-deep {
+    background-color: hsl(var(--pr-deep));
+  }
+
+  .text-cyan {
+    color: hsl(var(--pr-cyan));
+  }
+}
