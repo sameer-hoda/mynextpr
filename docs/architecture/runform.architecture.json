@@ -1,0 +1,305 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "RunForm \u2014 photo-to-3D running form analysis",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1120,
+      640
+    ],
+    "views": [
+      {
+        "id": "photo-to-studio",
+        "label": "Photo to studio",
+        "focus": [
+          "photo",
+          "landing",
+          "server",
+          "audit",
+          "mesh",
+          "studio"
+        ],
+        "note": "One running photo becomes a scored 3D studio: upload, audit and mesh build in parallel, then the interactive report."
+      },
+      {
+        "id": "tour-voice",
+        "label": "Tour and voice",
+        "focus": [
+          "studio",
+          "tour",
+          "voice",
+          "share"
+        ],
+        "note": "The guided walkthrough flies the camera to each weak zone while the coach speaks, then shares the result."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "photo",
+      "type": "external",
+      "label": "Runner photo",
+      "sublabel": "One side-profile upload",
+      "pos": [
+        36,
+        120
+      ],
+      "size": [
+        140,
+        68
+      ]
+    },
+    {
+      "id": "landing",
+      "type": "frontend",
+      "label": "Landing + upload",
+      "sublabel": "Guest login, sanitize",
+      "pos": [
+        216,
+        120
+      ],
+      "size": [
+        140,
+        68
+      ]
+    },
+    {
+      "id": "server",
+      "type": "backend",
+      "label": "stdlib server",
+      "sublabel": "Routes, sessions, jobs",
+      "pos": [
+        396,
+        120
+      ],
+      "size": [
+        140,
+        68
+      ]
+    },
+    {
+      "id": "audit",
+      "type": "cloud",
+      "label": "Gemini audit",
+      "sublabel": "7 zones, strict rubric",
+      "brand": "gemini",
+      "pos": [
+        396,
+        300
+      ],
+      "size": [
+        140,
+        68
+      ]
+    },
+    {
+      "id": "mesh",
+      "type": "cloud",
+      "label": "Tripo v3 mesh",
+      "sublabel": "Cloud 3D rebuild",
+      "pos": [
+        576,
+        300
+      ],
+      "size": [
+        140,
+        68
+      ]
+    },
+    {
+      "id": "anchors",
+      "type": "backend",
+      "label": "Normalize + anchors",
+      "sublabel": "Zone markers on mesh",
+      "pos": [
+        576,
+        120
+      ],
+      "size": [
+        140,
+        68
+      ]
+    },
+    {
+      "id": "studio",
+      "type": "frontend",
+      "label": "3D studio",
+      "sublabel": "Three.js, scorecard",
+      "pos": [
+        756,
+        120
+      ],
+      "size": [
+        140,
+        68
+      ]
+    },
+    {
+      "id": "tour",
+      "type": "frontend",
+      "label": "Guided tour",
+      "sublabel": "Camera fly-to per zone",
+      "pos": [
+        756,
+        300
+      ],
+      "size": [
+        140,
+        68
+      ]
+    },
+    {
+      "id": "voice",
+      "type": "cloud",
+      "label": "Coach voice",
+      "sublabel": "Inworld TTS + fallback",
+      "pos": [
+        936,
+        300
+      ],
+      "size": [
+        140,
+        68
+      ]
+    },
+    {
+      "id": "share",
+      "type": "backend",
+      "label": "Share links",
+      "sublabel": "/s/ tracked + OG cards",
+      "pos": [
+        936,
+        120
+      ],
+      "size": [
+        140,
+        68
+      ]
+    },
+    {
+      "id": "edge",
+      "type": "cloud",
+      "label": "nginx + systemd",
+      "sublabel": "EC2 t3.small :8139",
+      "pos": [
+        216,
+        460
+      ],
+      "size": [
+        140,
+        68
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "photo-to-landing",
+      "from": "photo",
+      "to": "landing",
+      "label": "upload",
+      "variant": "emphasis",
+      "labelAt": [
+        176,
+        106
+      ]
+    },
+    {
+      "id": "landing-to-server",
+      "from": "landing",
+      "to": "server",
+      "label": "POST /api/jobs",
+      "labelAt": [
+        336,
+        106
+      ]
+    },
+    {
+      "id": "server-to-audit",
+      "from": "server",
+      "to": "audit",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "server-to-mesh",
+      "from": "server",
+      "to": "mesh",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "mesh-to-anchors",
+      "from": "mesh",
+      "to": "anchors",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "anchors-to-studio",
+      "from": "anchors",
+      "to": "studio",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "studio-to-tour",
+      "from": "studio",
+      "to": "tour",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "tour-to-voice",
+      "from": "tour",
+      "to": "voice"
+    },
+    {
+      "id": "tour-to-share",
+      "from": "tour",
+      "to": "share",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "edge-to-server",
+      "from": "edge",
+      "to": "server",
+      "variant": "dashed",
+      "fromSide": "top",
+      "toSide": "bottom",
+      "via": [
+        [
+          286,
+          400
+        ],
+        [
+          286,
+          240
+        ],
+        [
+          466,
+          240
+        ]
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Evidence at a glance",
+      "items": [
+        "Audit rubric cites Lieberman and Cavanagh & Lafortune",
+        "Every finding carries biomechanics evidence + cue, cue, drill"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Built for thumbs",
+      "items": [
+        "44px tour tray, score-only badges, no caption clutter",
+        "Single voice guaranteed across rapid step changes"
+      ]
+    }
+  ]
+}
