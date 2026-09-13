@@ -12,6 +12,10 @@
 </p>
 
 <p align="center">
+  <a href="https://mynextpr.com"><img src="https://img.shields.io/badge/View_Live_Site-mynextpr.com-c8f04a?style=for-the-badge&logo=google-chrome&logoColor=0e1206" alt="View live site — mynextpr.com"></a>
+</p>
+
+<p align="center">
   <img src="docs/readme_landing.png" alt="RunForm homepage" width="860">
 </p>
 
@@ -33,6 +37,16 @@ runner photo → stdlib server → ┬─ Gemini audit (7 zones, strict rubric) 
 <p align="center">
   <img src="docs/readme_studio.png" alt="RunForm 3D studio with scorecard" width="860">
 </p>
+
+## The rebuild, frame by frame
+
+Stills from the homepage cut — one night-race photo in, a textured 3D runner out, every zone scored:
+
+| One photo in | Rebuilt in 3D |
+|---|---|
+| <img src="docs/model_photo.png" alt="Runner night-race photo" width="420"> | <img src="docs/model_rebuild.png" alt="Textured 3D rebuild on turntable" width="420"> |
+| Every zone gets a fix | One stride score |
+| <img src="docs/model_zone.png" alt="Zone callout — trunk 48, ankles not waist" width="420"> | <img src="docs/model_score.png" alt="Stride score 69" width="420"> |
 
 ## Features
 
