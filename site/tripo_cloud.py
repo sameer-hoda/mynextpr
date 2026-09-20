@@ -17,20 +17,60 @@ Cost: ~20-30 credits/build (~$0.20-0.30). Demo/sample reuses jobs/demo/mesh.glb 
 import json
 import os
 import time
+import urllib.error
 import urllib.request
 import uuid
 
 BASE = "https://openapi.tripo3d.ai/v3"
-MODEL = os.environ.get("TRIPO_MODEL", "v3.1-20260211")
-# Two lanes (env TRIPO_QUALITY=fast|best, default fast):
+DEFAULT_MODEL = "v3.1-20260211"
+# Two lanes, selected per build (env TRIPO_QUALITY=fast|best, default fast):
 # - fast: standard texture+geometry, 50k faces, no autofix/align overhead.
-#   Targets ~40-70s cloud builds, smaller files, fewer credits. Default,
+#   Targets ~40-70s cloud builds, smaller files, ~30 credits. Default,
 #   because the heat shell carries the visuals anyway.
 # - best: the documented max lane (PBR + detailed + Ultra + align_image,
-#   100k faces). ~2min builds. Set TRIPO_QUALITY=best in .env for hero-grade.
+#   100k faces). ~2min builds, ~60 credits. Set TRIPO_QUALITY=best in .env
+#   for hero-grade (NOT default until approved — costs ~2x per build).
+# Lane settings are read LIVE per create_task (not only at import) so a .env /
+# env change takes effect on the next build without a server restart. Explicit
+# per-call args (create_task(tok, quality="best")) override env. Unknown
+# TRIPO_QUALITY values fall back to fast: never burn extra credits by typo.
+MODEL = os.environ.get("TRIPO_MODEL", DEFAULT_MODEL)
 QUALITY = os.environ.get("TRIPO_QUALITY", "fast").strip().lower()
-FACE_LIMIT = int(os.environ.get("TRIPO_FACE_LIMIT",
-                                "100000" if QUALITY == "best" else "50000"))
+try:
+    FACE_LIMIT = int(os.environ.get("TRIPO_FACE_LIMIT",
+                                    "100000" if QUALITY == "best" else "50000"))
+except (TypeError, ValueError):
+    FACE_LIMIT = 100000 if QUALITY == "best" else 50000
+
+
+def lane_settings(model=None, quality=None, face_limit=None):
+    """Resolve (model, quality, face_limit) for one build.
+
+    Precedence per field: explicit arg > env (TRIPO_MODEL / TRIPO_QUALITY /
+    TRIPO_FACE_LIMIT) > lane default. quality normalizes to "fast"|"best".
+    """
+    m = (model if model is not None else os.environ.get("TRIPO_MODEL", "")
+         ).strip() or DEFAULT_MODEL
+    q = (quality if quality is not None else os.environ.get("TRIPO_QUALITY", "")
+         ).strip().lower() or "fast"
+    if q not in ("fast", "best"):
+        q = "fast"
+    default_faces = 100000 if q == "best" else 50000
+    raw = face_limit if face_limit is not None else os.environ.get(
+        "TRIPO_FACE_LIMIT", "")
+    try:
+        f = int(raw)
+        if f <= 0:
+            f = default_faces
+    except (TypeError, ValueError):
+        f = default_faces
+    return m, q, f
+
+
+def describe_lane(model=None, quality=None, face_limit=None):
+    """Small JSON-able dict of the lane a build will use (for usage logging)."""
+    m, q, f = lane_settings(model, quality, face_limit)
+    return {"model": m, "quality": q, "face_limit": f}
 
 
 def _key():
@@ -48,6 +88,33 @@ def _key():
     return ""
 
 
+def _http_error_message(e):
+    """Surface Tripo's JSON error body (code/message/suggestion) plainly, so a
+    job error reads 'tripo HTTP 403 [code 2010] Insufficient credits' instead
+    of a bare HTTP status. Never raises; falls back to status + snippet."""
+    try:
+        status = e.code
+    except AttributeError:
+        status = "?"
+    try:
+        body = (e.read() or b"").decode("utf-8", "replace")
+    except Exception:
+        body = ""
+    try:
+        err = json.loads(body) if body else {}
+    except ValueError:
+        err = {}
+    if isinstance(err, dict) and (err.get("code") is not None or err.get("message")):
+        msg = "tripo HTTP %s [code %s] %s" % (
+            status, err.get("code"), (err.get("message") or "").strip())
+        sug = (err.get("suggestion") or "").strip()
+        if sug:
+            msg += " — %s" % sug[:160]
+        return msg
+    detail = body.strip()[:160]
+    return "tripo HTTP %s%s" % (status, (": " + detail) if detail else "")
+
+
 def _req(path, data=None, method=None, ctype="application/json", raw=None, timeout=120):
     key = _key()
     if not key:
@@ -61,8 +128,11 @@ def _req(path, data=None, method=None, ctype="application/json", raw=None, timeo
         headers["Content-Type"] = ctype
     req = urllib.request.Request(url, data=body, headers=headers,
                                  method=method or ("POST" if body else "GET"))
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        return json.loads(resp.read().decode())
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            return json.loads(resp.read().decode())
+    except urllib.error.HTTPError as e:
+        raise RuntimeError(_http_error_message(e)) from None
 
 
 def upload_image(path):
@@ -79,8 +149,9 @@ def upload_image(path):
     return out["data"]["file_token"]
 
 
-def create_task(file_token):
-    if QUALITY == "best":
+def create_task(file_token, model=None, quality=None, face_limit=None):
+    model, quality, face_limit = lane_settings(model, quality, face_limit)
+    if quality == "best":
         params = {
             "texture": True,               # full PBR skin (base_color/metallic/roughness/normal)
             "pbr": True,
@@ -88,7 +159,7 @@ def create_task(file_token):
             "geometry_quality": "detailed",  # Ultra mode: finest geometry (v3.0+ only)
             "orientation": "align_image",    # align mesh to the photo viewpoint (needs texture:true)
             "texture_alignment": "original_image",
-            "face_limit": FACE_LIMIT,
+            "face_limit": face_limit,
             "enable_image_autofix": True,    # enhance low-res inputs before generation
         }
     else:
@@ -98,10 +169,10 @@ def create_task(file_token):
             "texture_quality": "standard",  # fastest texture tier
             "geometry_quality": "standard",  # balanced geometry (heat shell hides the difference)
             "texture_alignment": "original_image",
-            "face_limit": FACE_LIMIT,
+            "face_limit": face_limit,
             "enable_image_autofix": False,   # skip the enhance pass for speed
         }
-    params.update({"input": file_token, "model": MODEL})
+    params.update({"input": file_token, "model": model})
     task = _req("/generation/image-to-model", params)
     if task.get("code") != 0:
         raise RuntimeError("tripo task failed: %s" % task)
@@ -196,3 +267,72 @@ def build_mesh(input_jpg, dst_glb, status_cb=None):
         except OSError:
             pass
     return dst_glb
+
+
+def selftest():
+    """Zero-spend: mocked HTTPError with Tripo JSON body (no network)."""
+    import io
+    real_key = os.environ.get("TRIPO_API_KEY")
+    real_open = urllib.request.urlopen
+    os.environ["TRIPO_API_KEY"] = "test-key-zero-spend"
+    try:
+        def fake_403(req, timeout=None):
+            raise urllib.error.HTTPError(
+                req.full_url, 403, "Forbidden", {},
+                io.BytesIO(b'{"code":2010,"message":"Insufficient credits",'
+                           b'"suggestion":"Top up","request_id":"req_1"}'))
+        urllib.request.urlopen = fake_403
+        try:
+            _req("/generation/image-to-model", {"x": 1})
+            raise AssertionError("403 must raise")
+        except RuntimeError as e:
+            assert "403" in str(e) and "2010" in str(e), e
+            assert "Insufficient credits" in str(e), e
+        # non-JSON body falls back to status + snippet
+        def fake_500(req, timeout=None):
+            raise urllib.error.HTTPError(req.full_url, 500, "Error", {},
+                                         io.BytesIO(b"<html>down</html>"))
+        urllib.request.urlopen = fake_500
+        try:
+            _req("/tasks/x")
+            raise AssertionError("500 must raise")
+        except RuntimeError as e:
+            assert "500" in str(e) and "down" in str(e), e
+        # missing key still raises before any HTTP (.env may also resolve,
+        # so stub _key itself for determinism)
+        real_key_fn = globals()["_key"]
+        globals()["_key"] = lambda: ""
+        try:
+            _req("/tasks/x")
+            raise AssertionError("missing key must raise")
+        except RuntimeError as e:
+            assert "TRIPO_API_KEY not set" in str(e), e
+        finally:
+            globals()["_key"] = real_key_fn
+        # success path untouched
+        def fake_ok(req, timeout=None):
+            class R:
+                def __enter__(self):
+                    return self
+                def __exit__(self, *a):
+                    return False
+                def read(self):
+                    return b'{"code":0,"data":{"ok":true}}'
+            return R()
+        urllib.request.urlopen = fake_ok
+        assert _req("/account/balance") == {"code": 0, "data": {"ok": True}}
+    finally:
+        urllib.request.urlopen = real_open
+        if real_key is None:
+            os.environ.pop("TRIPO_API_KEY", None)
+        else:
+            os.environ["TRIPO_API_KEY"] = real_key
+    print("tripo_cloud selftest: all checks passed")
+
+
+if __name__ == "__main__":
+    import sys
+    if "--selftest" in sys.argv:
+        selftest()
+    else:
+        print("usage: python3 site/tripo_cloud.py --selftest")
