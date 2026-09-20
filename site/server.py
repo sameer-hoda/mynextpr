@@ -664,7 +664,11 @@ class H(http.server.BaseHTTPRequestHandler):
                 return self.send(*page("report template missing", 500, "text/plain"))
             t = t.replace("var ANALYSIS = __ANALYSIS_JSON__;", "var ANALYSIS = " + json.dumps(a) + ";")
             t = t.replace("var ANCHORS = __ANCHORS_JSON__;", "var ANCHORS = " + json.dumps(anchors) + ";")
-            t = t.replace("var MESH = __MESH_URL__;", "var MESH = " + json.dumps("/jobs/%s/mesh.glb" % jid) + ";")
+            try:
+                mesh_v = int(os.path.getmtime(os.path.join(d, "mesh.glb")))
+            except OSError:
+                mesh_v = 0
+            t = t.replace("var MESH = __MESH_URL__;", "var MESH = " + json.dumps("/jobs/%s/mesh.glb?v=%d" % (jid, mesh_v)) + ";")
             base = "http://" + (self.headers.get("Host") or "127.0.0.1:8138")
             score = a.get("overall_score", "")
             title = "My run scored %s/100 in 3D — RunForm" % score
@@ -683,7 +687,15 @@ class H(http.server.BaseHTTPRequestHandler):
                 fp = os.path.join(JOBS, parts[0], parts[1])
                 if os.path.exists(fp):
                     ct = "model/gltf-binary" if fp.endswith(".glb") else "image/jpeg"
-                    return self.send(200, ct, open(fp, "rb").read())
+                    body = open(fp, "rb").read()
+                    self.send_response(200)
+                    self.send_header("Content-Type", ct)
+                    self.send_header("Content-Length", str(len(body)))
+                    self.send_header("Last-Modified", self.date_time_string(os.path.getmtime(fp)))
+                    self.send_header("Cache-Control", "public, max-age=86400")
+                    self.end_headers()
+                    self.wfile.write(body)
+                    return
             return self.send(*page("not found", 404, "text/plain"))
         if path.startswith("/examples/"):
             fp = os.path.join(V3, "reference", "input", os.path.basename(path))
