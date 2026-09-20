@@ -268,6 +268,11 @@
         <button class="tbtn" data-view="back" aria-pressed="false">Back</button>
         <button class="tbtn" data-view="top" aria-pressed="false">Top</button>
       </div>
+      <div class="tgroup" role="radiogroup" aria-label="Model skin">
+        <span class="tlbl">Skin</span>
+        <button class="tbtn active" data-skin="colour" aria-pressed="true">True colour</button>
+        <button class="tbtn" data-skin="heat" aria-pressed="false">Heat</button>
+      </div>
     </div>
     <div class="legend">
       <span><i style="background:var(--optimal)"></i>doing well</span>
@@ -1006,10 +1011,17 @@ function init3D(){
     });
   }
 
+  var skinMode="colour";
+  try{ if(localStorage.getItem("rf_skin")==="heat") skinMode="heat"; }catch(e){}
   function applyMode(){
-    if(group) group.visible=false;   // the heat shell is the visible skin
-    if(heatGroup) heatGroup.visible=true;
+    var colour = skinMode!=="heat";
+    baseMeshes.forEach(function(o){ o.material = colour ? (o.userData.orig||solidMat) : solidMat; });
+    if(group) group.visible=true;
+    if(heatGroup) heatGroup.visible=!colour;
+    skinBtns.forEach(function(b){ var on=b.getAttribute("data-skin")===skinMode; b.classList.toggle("active",on); b.setAttribute("aria-pressed",on?"true":"false"); });
   }
+  var skinBtns=document.querySelectorAll("button[data-skin]");
+  skinBtns.forEach(function(b){ b.addEventListener("click", function(){ skinMode=b.getAttribute("data-skin"); try{localStorage.setItem("rf_skin",skinMode);}catch(e){} applyMode(); }); });
 
   function fit(){
     var b=new THREE.Box3().setFromObject(group);
