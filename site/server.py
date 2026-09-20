@@ -70,6 +70,22 @@ for _k in ("TRIPO_API_KEY", "TRIPO_MODEL", "TRIPO_QUALITY", "TRIPO_FACE_LIMIT",
            "GEMINI_API_KEY", "INWORLD_API_KEY", "INWORLD_TTS_VOICE"):
     if _ENV.get(_k):
         os.environ.setdefault(_k, _ENV[_k])
+# Google Analytics 4: set GA_MEASUREMENT_ID=G-XXXXXXXXXX (env or .env).
+# Empty/invalid -> no tag emitted, pages render unchanged.
+GA_MEASUREMENT_ID = os.environ.get("GA_MEASUREMENT_ID") or _ENV.get("GA_MEASUREMENT_ID", "")
+if not re.match(r"^G-[A-Z0-9]{4,}$", GA_MEASUREMENT_ID or ""):
+    if GA_MEASUREMENT_ID:
+        print("WARNING: GA_MEASUREMENT_ID looks wrong (want G-XXXXXXXXXX) — tag disabled", flush=True)
+    GA_MEASUREMENT_ID = ""
+GA_SNIPPET = ("<script async src='https://www.googletagmanager.com/gtag/js?id=" + GA_MEASUREMENT_ID + "'></script>"
+              "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}"
+              "gtag('js',new Date());gtag('config','" + GA_MEASUREMENT_ID + "');</script>") if GA_MEASUREMENT_ID else ""
+# Telegram completed-report notifications: TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID
+# (env or .env). Unset -> notifications silently skipped, pipeline unaffected.
+TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN") or _ENV.get("TELEGRAM_BOT_TOKEN", "")
+TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID") or _ENV.get("TELEGRAM_CHAT_ID", "")
+PUBLIC_BASE_URL = ((os.environ.get("PUBLIC_BASE_URL") or _ENV.get("PUBLIC_BASE_URL", "")).strip().rstrip("/")
+                   or "https://mynextpr.com")
 MAX_UPLOAD = 8 * 1024 * 1024
 JOB_RE = re.compile(r"^[a-zA-Z0-9_-]{1,40}$")
 
@@ -198,7 +214,7 @@ LANDING_JS = (
 
 LANDING = ("<!doctype html><html><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'>"
            "<title>RunForm — analyze your run form</title>"
-           "<meta name=description content='Upload one running photo and get a 3D breakdown of your stride, zone by zone.'>" + CSS +
+           "<meta name=description content='Upload one running photo and get a 3D breakdown of your stride, zone by zone.'>" + GA_SNIPPET + CSS +
            "<script src=/assets/dots.js defer></script></head><body><canvas id=dots-bg></canvas>"
            "<div class=nav><span class=brand>RunForm</span><a class=navlink href='/report/demo'>See the sample report &rarr;</a></div>"
            "<main>"
@@ -244,7 +260,7 @@ LANDING = ("<!doctype html><html><head><meta charset=utf-8><meta name=viewport c
            "</body></html>")
 
 LOGIN = ("<!doctype html><html><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'>"
-         "<title>RunForm — guest login</title>" + CSS + "<script src=/assets/dots.js defer></script></head><body><canvas id=dots-bg></canvas><div class=wrap>"
+         "<title>RunForm — guest login</title>" + CSS + GA_SNIPPET + "<script src=/assets/dots.js defer></script></head><body><canvas id=dots-bg></canvas><div class=wrap>"
          "<h1>Log in <span class=lime>as guest.</span></h1>"
          "<p class=sub>No password, no email. One click gives you a demo session on this machine.</p>"
          "<div class=card><form method=post action=/login>"
@@ -253,7 +269,7 @@ LOGIN = ("<!doctype html><html><head><meta charset=utf-8><meta name=viewport con
          "</div></body></html>")
 
 UPLOAD = ("<!doctype html><html><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'>"
-          "<title>RunForm — upload</title>" + CSS + "<script src=/assets/dots.js defer></script></head><body><canvas id=dots-bg></canvas><div class=wrap>"
+          "<title>RunForm — upload</title>" + CSS + GA_SNIPPET + "<script src=/assets/dots.js defer></script></head><body><canvas id=dots-bg></canvas><div class=wrap>"
           "<h1>Upload <span class=lime>your run.</span></h1>"
           "<p class=sub>A side-profile shot, mid-stride if you have one. Processing takes about 2 minutes.</p>"
           "<div class=card><form method=post action=/api/jobs enctype=multipart/form-data>"
@@ -263,7 +279,7 @@ UPLOAD = ("<!doctype html><html><head><meta charset=utf-8><meta name=viewport co
           "</div></body></html>")
 
 JOB_PAGE = ("<!doctype html><html><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'>"
-            "<title>RunForm — building your runner</title>" + CSS +
+            "<title>RunForm — building your runner</title>" + CSS + GA_SNIPPET +
             "<script src='https://unpkg.com/three@0.147.0/build/three.min.js'></script>"
             "<style>#loadwrap{position:relative;width:280px;height:280px;margin:10px auto}"
             "#loadwrap canvas{position:absolute;inset:0}"
@@ -357,6 +373,18 @@ JOB_PAGE = ("<!doctype html><html><head><meta charset=utf-8><meta name=viewport 
             "}).catch(function(){fails++;var wait=Math.min(15000,2000*Math.pow(2,fails-1));"
             "document.getElementById('detail').textContent='Reconnecting… (try '+fails+', retry in '+Math.round(wait/1000)+'s)';"
             "setTimeout(poll,wait);});}poll();</script></div></body></html>")
+
+
+ROBOTS = ("User-agent: *\nAllow: /\n"
+          "Sitemap: https://mynextpr.com/sitemap.xml\n")
+
+
+def sitemap_xml():
+    return ("<?xml version='1.0' encoding='UTF-8'?>"
+            "<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>"
+            "<url><loc>https://mynextpr.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>"
+            "<url><loc>https://mynextpr.com/report/demo</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>"
+            "</urlset>")
 
 
 def page(body, code=200, ctype="text/html; charset=utf-8"):
@@ -547,6 +575,35 @@ def build_mesh(d, jid):
                        "please re-upload." % cloud_err)
 
 
+def telegram_notify(text):
+    """Best-effort Telegram message via TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID.
+
+    Never raises: returns True on ok, False when unconfigured or on any
+    error, so the pipeline never depends on it.
+    """
+    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
+        return False
+    try:
+        import urllib.request
+        body = urllib.parse.urlencode(
+            {"chat_id": TELEGRAM_CHAT_ID, "text": text}).encode()
+        req = urllib.request.Request(
+            "https://api.telegram.org/bot%s/sendMessage" % TELEGRAM_BOT_TOKEN,
+            data=body,
+            headers={"Content-Type": "application/x-www-form-urlencoded"})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            return json.loads(r.read().decode()).get("ok", False)
+    except Exception:
+        return False
+
+
+def notify_report_done(jid, score):
+    """Fire-and-forget completed-report notification (report URL + score)."""
+    text = ("RunForm report ready — score %s/100\n"
+            "%s/report/%s" % (score, PUBLIC_BASE_URL, jid))
+    threading.Thread(target=telegram_notify, args=(text,), daemon=True).start()
+
+
 def run_pipeline(jid):
     d = os.path.join(JOBS, jid)
     try:
@@ -572,6 +629,7 @@ def run_pipeline(jid):
             json.dump(compute_anchors(os.path.join(d, "mesh.glb"), zones), f)
         set_status(jid, stage="done", detail="report ready",
                    score=analysis.get("overall_score"))
+        notify_report_done(jid, analysis.get("overall_score"))
     except Exception as e:
         set_status(jid, stage="failed", error=str(e)[-300:])
 
@@ -724,6 +782,7 @@ class H(http.server.BaseHTTPRequestHandler):
                 t = open(TEMPLATE).read()
             except OSError:
                 return self.send(*page("report template missing", 500, "text/plain"))
+            t = t.replace("__GA_SNIPPET__", GA_SNIPPET)
             t = t.replace("var ANALYSIS = __ANALYSIS_JSON__;", "var ANALYSIS = " + json.dumps(a) + ";")
             t = t.replace("var ANCHORS = __ANCHORS_JSON__;", "var ANCHORS = " + json.dumps(anchors) + ";")
             try:
@@ -815,6 +874,10 @@ class H(http.server.BaseHTTPRequestHandler):
                 ct = "image/png" if fp.endswith(".png") else "application/json" if fp.endswith(".json") else "text/plain"
                 return self.send(200, ct, open(fp, "rb").read(), cache="no-store")
             return self.send(*page("not found", 404, "text/plain"))
+        if path == "/robots.txt":
+            return self.send(*page(ROBOTS, 200, "text/plain; charset=utf-8"))
+        if path == "/sitemap.xml":
+            return self.send(*page(sitemap_xml(), 200, "application/xml; charset=utf-8"))
         if path == "/healthz":
             return self.send(*page(json.dumps({"ok": True, "jobs": len(STATUS),
                 "inworld": bool(INWORLD_KEY)}), 200, "application/json"))
