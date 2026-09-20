@@ -18,14 +18,27 @@ import time
 import urllib.parse
 import uuid
 
-V3 = "/Users/sameerhoda/Projects/running_analysis/v3"
+V3 = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 JOBS = os.path.join(V3, "site", "jobs")
 TEMPLATE = os.path.join(V3, "site", "report_template.html")
 TRIPOSR_SRC = os.path.join(V3, "tripoSR_src")
 STEP1_PROMPT = open(os.path.join(V3, "step1_prompt.txt")).read()
-GEMINI_KEY = [l.split("=", 1)[1].strip().strip("\"'") for l in
-              open("/Users/sameerhoda/Projects/running_analysis/v2/.env")
-              if l.startswith("GEMINI_API_KEY=")][0]
+
+
+def _read_key(name, *paths):
+    for p in paths:
+        try:
+            for line in open(p):
+                if line.startswith(name + "="):
+                    return line.split("=", 1)[1].strip().strip("\"'")
+        except OSError:
+            pass
+    return ""
+
+
+GEMINI_KEY = os.environ.get("GEMINI_API_KEY") or _read_key(
+    "GEMINI_API_KEY", os.path.join(V3, ".env"),
+    "/Users/sameerhoda/Projects/running_analysis/v2/.env")
 
 
 def _read_env_file(path):
