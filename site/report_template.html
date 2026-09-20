@@ -219,6 +219,7 @@
 <script src="https://unpkg.com/three@0.147.0/build/three.min.js"></script>
 <script src="https://unpkg.com/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://unpkg.com/three@0.147.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://unpkg.com/three@0.147.0/examples/js/loaders/DRACOLoader.js"></script>
 <script src="/assets/dots.js" defer></script>
 </head>
 <body>
@@ -1253,7 +1254,13 @@ function init3D(){
   })();
 
   if(!THREE.GLTFLoader){ showFallback("3D loader blocked"); return; }
-  new THREE.GLTFLoader().load(MESH, function(gltf){
+  var gltfLoader=new THREE.GLTFLoader();
+  if(THREE.DRACOLoader){
+    var draco=new THREE.DRACOLoader();
+    draco.setDecoderPath("https://unpkg.com/three@0.147.0/examples/js/libs/draco/");
+    gltfLoader.setDRACOLoader(draco);
+  }
+  gltfLoader.load(MESH, function(gltf){
     group=gltf.scene;
     group.traverse(function(o){ if(o.isMesh){ o.userData.orig=o.material; o.material=solidMat; baseMeshes.push(o); } });
     scene.add(group);
